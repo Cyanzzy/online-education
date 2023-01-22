@@ -1,4 +1,8 @@
+# 0 项目简介
+
 本项目以在线教育业务为基础，在线教育网站包括用户端、机构端、运营端。采用前后端分离架构，基于Spring Cloud 微服务技术栈进行设计，采用Nginx、SpringBoot、Spring Cloud、MyBatis-Plus、MQ、Redis、Elasticsearch等框架和中间件为基础进行开发
+
+# 1 环境搭建
 
 [0 开发工具配置](https://gitee.com/cyanzzy/online-education/blob/master/doc/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AEv1.0.pdf)
 
@@ -9,3 +13,5 @@
 [3 项目开发环境搭建](https://gitee.com/cyanzzy/online-education/blob/master/doc/3%20%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
 
 [补充：面试要点](https://gitee.com/cyanzzy/online-education/blob/master/doc/%E8%A1%A5%E5%85%85%EF%BC%9A%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9.md)
+
+# 2 内容管理
