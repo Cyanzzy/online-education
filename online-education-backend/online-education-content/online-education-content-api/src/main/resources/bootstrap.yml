@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: online-education-content-api
+
+logging:
+  config: classpath:log4j2-dev.xml
+
+server:
+  servlet:
+    context-path: /content
+  port: 63040
+
+
+swagger:
+  title: "在线教育网站"
+  description: "内容系统管理系统对课程相关信息进行业务管理数据"
+  base-package: com.cyan.springcloud.content
+  enabled: true
+  version: 1.0.0

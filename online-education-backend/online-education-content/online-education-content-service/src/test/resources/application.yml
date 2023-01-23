@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: online-education-content-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/online_education_content?userUnicode=true&useSSL=false
+    username: root
+    password: root
+
+logging:
+  config: classpath:log4j2-dev.xml

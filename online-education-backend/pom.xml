@@ -5,11 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cyan.springcloud</groupId>
-    <artifactId>online-education-backend-parent</artifactId>
+    <artifactId>online-education-backend</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>online-education-base</module>
         <module>online-education-content</module>
+        <module>online-education-generator</module>
     </modules>
 
     <packaging>pom</packaging>
