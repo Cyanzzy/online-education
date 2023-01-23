@@ -15,8 +15,8 @@
 [补充：面试要点](https://gitee.com/cyanzzy/online-education/blob/master/doc/%E8%A1%A5%E5%85%85%EF%BC%9A%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9.md)
 
 # 2 内容管理
-[1 模块需求分析]()
+[1 模块需求分析](https://gitee.com/cyanzzy/online-education/blob/master/doc/2%20%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86/1%20%E6%A8%A1%E5%9D%97%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90.md)
 
-[2 创建模块工程]()
+[2 创建模块工程](https://gitee.com/cyanzzy/online-education/blob/master/doc/2%20%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86/2%20%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%9D%97%E5%B7%A5%E7%A8%8B.md)
 
-[3 课程查询]()
+[3 课程查询](https://gitee.com/cyanzzy/online-education/blob/master/doc/2%20%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86/3%20%E8%AF%BE%E7%A8%8B%E6%9F%A5%E8%AF%A2.md)
