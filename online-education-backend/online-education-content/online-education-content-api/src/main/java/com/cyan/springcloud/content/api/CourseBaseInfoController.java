@@ -4,6 +4,7 @@ import com.cyan.springcloud.base.model.PageParams;
 import com.cyan.springcloud.base.model.PageResult;
 import com.cyan.springcloud.model.dto.QueryCourseParamsDto;
 import com.cyan.springcloud.model.po.CourseBase;
+import com.cyan.springcloud.content.service.CourseBaseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Resource;
 
 /**
  * @author Cyan Chau
@@ -23,6 +22,9 @@ import java.util.List;
 @RequestMapping("/course")
 @Api(value = "课程信息编辑接口", tags = "课程信息编辑接口")
 public class CourseBaseInfoController {
+
+    @Resource
+    private CourseBaseService courseBaseService;
 
     /**
      * 课程查询接口
@@ -34,12 +36,8 @@ public class CourseBaseInfoController {
     @ApiOperation("课程查询接口")
     @PostMapping("/list")
     public PageResult<CourseBase> list(PageParams pageParams, @RequestBody QueryCourseParamsDto queryCourseParamsDto) {
-        CourseBase courseBase = new CourseBase();
-        courseBase.setName("测试名称");
-        courseBase.setCreateDate(LocalDateTime.now());
-        List<CourseBase> courseBases = new ArrayList();
-        courseBases.add(courseBase);
-        PageResult pageResult = new PageResult<CourseBase>(courseBases,10,1,10);
-        return pageResult;
+        PageResult<CourseBase> result = courseBaseService.queryCourseBaseList(pageParams, queryCourseParamsDto);
+
+        return result;
     }
 }

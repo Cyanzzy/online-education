@@ -1,10 +1,9 @@
 package com.cyan.springcloud;
 
-import com.cyan.springcloud.mapper.CourseBaseMapper;
+import com.cyan.springcloud.content.mapper.CourseBaseMapper;
 import com.cyan.springcloud.model.po.CourseBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
