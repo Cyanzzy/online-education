@@ -8,6 +8,9 @@ Content-Type: application/json
   "courseName": ""
 }
 
+### 课程分类接口测试
+GET {{content_host}}/content/course-category/tree-nodes
+
 ###
 
 

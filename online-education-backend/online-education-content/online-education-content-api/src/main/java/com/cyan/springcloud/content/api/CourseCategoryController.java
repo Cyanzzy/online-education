@@ -1,5 +1,6 @@
 package com.cyan.springcloud.content.api;
 
+import com.cyan.springcloud.content.service.CourseCategoryService;
 import com.cyan.springcloud.model.dto.CourseCategoryTreeDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,9 +22,12 @@ import java.util.List;
 @Api(value = "课程分类接口", tags = "课程分类接口")
 public class CourseCategoryController {
 
+    @Resource
+    private CourseCategoryService courseCategoryService;
+
     @ApiOperation("课程分类查询接口")
     @GetMapping("/tree-nodes")
     public List<CourseCategoryTreeDto> queryTreeNodes() {
-        return null;
+        return courseCategoryService.queryTreeNodes();
     }
 }

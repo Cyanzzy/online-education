@@ -2,6 +2,8 @@ package com.cyan.springcloud.content.api;
 
 import com.cyan.springcloud.base.model.PageParams;
 import com.cyan.springcloud.base.model.PageResult;
+import com.cyan.springcloud.model.dto.AddCourseDto;
+import com.cyan.springcloud.model.dto.CourseBaseInfoDto;
 import com.cyan.springcloud.model.dto.QueryCourseParamsDto;
 import com.cyan.springcloud.model.po.CourseBase;
 import com.cyan.springcloud.content.service.CourseBaseService;
@@ -39,5 +41,10 @@ public class CourseBaseInfoController {
         PageResult<CourseBase> result = courseBaseService.queryCourseBaseList(pageParams, queryCourseParamsDto);
 
         return result;
+    }
+
+    @ApiOperation("新增课程基础信息")
+    public CourseBaseInfoDto createCourseBase(@RequestBody AddCourseDto addCourseDto){
+        return null;
     }
 }
