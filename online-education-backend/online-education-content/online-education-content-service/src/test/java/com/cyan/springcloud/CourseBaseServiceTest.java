@@ -4,13 +4,15 @@ import com.cyan.springcloud.base.model.PageParams;
 import com.cyan.springcloud.base.model.PageResult;
 import com.cyan.springcloud.model.dto.QueryCourseParamsDto;
 import com.cyan.springcloud.model.po.CourseBase;
-import com.cyan.springcloud.content.service.CourseBaseService;
+import com.cyan.springcloud.content.service.CourseBaseInfoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
 /**
+ * CourseBaseServiceTest
+ *
  * @author Cyan Chau
  * @create 2023-01-26
  */
@@ -18,7 +20,7 @@ import javax.annotation.Resource;
 public class CourseBaseServiceTest {
 
     @Resource
-    private CourseBaseService courseBaseService;
+    private CourseBaseInfoService courseBaseService;
 
     @Test
     public void testCourseBaseService() {

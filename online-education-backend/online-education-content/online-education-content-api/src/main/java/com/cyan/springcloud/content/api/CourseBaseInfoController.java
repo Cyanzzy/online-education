@@ -6,7 +6,7 @@ import com.cyan.springcloud.model.dto.AddCourseDto;
 import com.cyan.springcloud.model.dto.CourseBaseInfoDto;
 import com.cyan.springcloud.model.dto.QueryCourseParamsDto;
 import com.cyan.springcloud.model.po.CourseBase;
-import com.cyan.springcloud.content.service.CourseBaseService;
+import com.cyan.springcloud.content.service.CourseBaseInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +21,12 @@ import javax.annotation.Resource;
  * @create 2023-01-23
  */
 @RestController
-@RequestMapping("/course")
+//@RequestMapping("/course")
 @Api(value = "课程信息编辑接口", tags = "课程信息编辑接口")
 public class CourseBaseInfoController {
 
     @Resource
-    private CourseBaseService courseBaseService;
+    private CourseBaseInfoService courseBaseService;
 
     /**
      * 课程查询接口
@@ -36,15 +36,24 @@ public class CourseBaseInfoController {
      * @return
      */
     @ApiOperation("课程查询接口")
-    @PostMapping("/list")
+    @PostMapping("/course/list")
     public PageResult<CourseBase> list(PageParams pageParams, @RequestBody QueryCourseParamsDto queryCourseParamsDto) {
         PageResult<CourseBase> result = courseBaseService.queryCourseBaseList(pageParams, queryCourseParamsDto);
 
         return result;
     }
 
+
     @ApiOperation("新增课程基础信息")
+    @PostMapping("/course")
     public CourseBaseInfoDto createCourseBase(@RequestBody AddCourseDto addCourseDto){
-        return null;
+
+        // 当前用户所属培训机构的id
+        Long companyId = 22L;
+
+        // service调用
+        CourseBaseInfoDto courseBase = courseBaseService.createCourseBase(companyId, addCourseDto);
+
+        return courseBase;
     }
 }

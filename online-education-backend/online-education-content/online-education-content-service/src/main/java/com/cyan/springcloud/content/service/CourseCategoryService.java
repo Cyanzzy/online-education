@@ -14,7 +14,9 @@ public interface CourseCategoryService {
 
     /**
      * 课程分类树形结构查询
+     *
+     * @param id
      * @return
      */
-    List<CourseCategoryTreeDto> queryTreeNodes();
+    List<CourseCategoryTreeDto> queryTreeNodes(String id);
 }

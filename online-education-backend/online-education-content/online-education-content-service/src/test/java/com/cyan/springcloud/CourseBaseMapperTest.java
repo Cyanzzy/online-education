@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 
 /**
+ * CourseBaseMapperTest
+ *
  * @author Cyan Chau
  * @create 2023-01-23
  */

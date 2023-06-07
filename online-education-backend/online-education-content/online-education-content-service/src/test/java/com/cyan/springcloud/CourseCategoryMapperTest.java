@@ -22,7 +22,7 @@ public class CourseCategoryMapperTest {
 
     @Test
     public void testCourseCategoryMapper() {
-        List<CourseCategoryTreeDto> courseCategoryTreeDtos = courseCategoryMapper.selectTreeNodes();
+        List<CourseCategoryTreeDto> courseCategoryTreeDtos = courseCategoryMapper.selectTreeNodes("1");
         System.out.println(courseCategoryTreeDtos);
     }
 }
