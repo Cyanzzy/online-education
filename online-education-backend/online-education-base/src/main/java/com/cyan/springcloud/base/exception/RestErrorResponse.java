@@ -3,7 +3,7 @@ package com.cyan.springcloud.base.exception;
 import java.io.Serializable;
 
 /**
- * 错误响应参数包装
+ * 错误响应参数包装，与前端约定返回的异常信息模型
  *
  * @author Cyan Chau
  * @create 2023-06-07

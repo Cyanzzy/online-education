@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
-
+import com.cyan.springcloud.base.exception.ValidationGroups;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -19,7 +19,8 @@ import java.math.BigDecimal;
 @ApiModel(value="AddCourseDto", description="新增课程基本信息")
 public class AddCourseDto {
 
- @NotEmpty(message = "课程名称不能为空")
+ @NotEmpty(message = "新增课程名称不能为空", groups = {ValidationGroups.Insert.class})
+ @NotEmpty(message = "修改课程名称不能为空", groups = {ValidationGroups.Update.class})
  @ApiModelProperty(value = "课程名称", required = true)
  private String name;
 
@@ -59,7 +60,7 @@ public class AddCourseDto {
  @ApiModelProperty(value = "价格")
  private Float price;
  @ApiModelProperty(value = "原价")
- private BigDecimal originalPrice;
+ private Float originalPrice;
 
 
  @ApiModelProperty(value = "qq")
