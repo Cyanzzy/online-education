@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
+ * 课程基础信息控制层
+ *
  * @author Cyan Chau
  * @create 2023-01-23
  */
@@ -63,7 +65,7 @@ public class CourseBaseInfoController {
     @PutMapping("/course")
     public CourseBaseInfoDto modifyCourseBase(@RequestBody @Validated(ValidationGroups.Update.class) EditCourseDto editCourseDto) {
         // 当前用户所属培训机构的id
-        Long companyId = 22L;
+        Long companyId = 1232141425L;
         return courseBaseService.updateCourseBase(companyId, editCourseDto);
     }
 

@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * 课程分类信息控制层
+ *
  * @author Cyan Chau
  * @create 2023-02-04
  */
