@@ -20,3 +20,23 @@
 [2 创建模块工程](https://gitee.com/cyanzzy/online-education/blob/master/doc/2%20%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86/2%20%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%9D%97%E5%B7%A5%E7%A8%8B.md)
 
 [3 课程查询](https://gitee.com/cyanzzy/online-education/blob/master/doc/2%20%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86/3%20%E8%AF%BE%E7%A8%8B%E6%9F%A5%E8%AF%A2.md)
+
+[4 课程分类查询]()
+
+[5 新增课程]()
+
+[6 修改课程]()
+
+[7 查询课程计划]()
+
+[8 新增修改计划]()
+
+[9 删除课程计划]()
+
+[10 课程计划排序]()
+
+[11 师资管理]()
+
+[12 删除课程]()
+
+# 媒资管理
