@@ -43,7 +43,6 @@ public class CourseBaseInfoController {
         return courseBaseService.queryCourseBaseList(pageParams, queryCourseParamsDto);
     }
 
-
     @ApiOperation("新增课程基础信息接口")
     @PostMapping("/course")
     public CourseBaseInfoDto createCourseBase(@RequestBody @Validated(ValidationGroups.Insert.class) AddCourseDto addCourseDto) {

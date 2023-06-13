@@ -6,10 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +18,11 @@ import java.util.List;
  * @create 2023-06-07
  */
 @Slf4j
-@RestControllerAdvice
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
     // 自定义异常
+    @ResponseBody
     @ExceptionHandler(BusinessException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public RestErrorResponse doBusinessException(BusinessException e) {
@@ -31,11 +31,10 @@ public class GlobalExceptionHandler {
         e.printStackTrace();
 
         // 解析异常信息
-        String errMessage = e.getErrMessage();
-        return new RestErrorResponse(errMessage);
+        return new RestErrorResponse(e.getErrMessage());
     }
 
-
+    @ResponseBody
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public RestErrorResponse doException(Exception e) {
@@ -47,20 +46,19 @@ public class GlobalExceptionHandler {
         return new RestErrorResponse(CommonError.UNKOWN_ERROR.getErrMessage());
     }
 
+    @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public RestErrorResponse doMethodArgumentNotValidException(MethodArgumentNotValidException e) {
 
         BindingResult bindingResult = e.getBindingResult();
-        // 校验的错误信息
-        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-        StringBuffer errors = new StringBuffer();
-        fieldErrors.forEach(error->{
-            errors.append(error.getDefaultMessage()).append(",");
+        List<String> errors = new ArrayList<>();
+        bindingResult.getFieldErrors().stream().forEach(item->{
+            errors.add(item.getDefaultMessage());
         });
-
-        // 解析异常信息
-        return new RestErrorResponse(errors.toString());
+        String errMessage = StringUtils.join(errors, ",");
+        log.error("捕获异常：{}", e.getMessage(), errMessage);
+        return new RestErrorResponse(errMessage);
     }
 
 }

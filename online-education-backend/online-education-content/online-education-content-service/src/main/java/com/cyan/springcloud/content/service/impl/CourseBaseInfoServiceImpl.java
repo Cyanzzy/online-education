@@ -84,33 +84,33 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
     @Transactional
     public CourseBaseInfoDto createCourseBase(Long companyId, AddCourseDto dto) {
 //        // 参数进行合法性校验
-////        if (StringUtils.isBlank(dto.getName())) {
-////            throw new BusinessException("课程名称为空");
-////        }
-////
-////        if (StringUtils.isBlank(dto.getMt())) {
-////            throw new BusinessException("课程分类为空");
-////        }
-////
-////        if (StringUtils.isBlank(dto.getSt())) {
-////            throw new BusinessException("课程分类为空");
-////        }
-////
-////        if (StringUtils.isBlank(dto.getGrade())) {
-////            throw new BusinessException("课程等级为空");
-////        }
-////
-////        if (StringUtils.isBlank(dto.getTeachmode())) {
-////            throw new BusinessException("教育模式为空");
-////        }
-////
-////        if (StringUtils.isBlank(dto.getUsers())) {
-////            throw new BusinessException("适应人群为空");
-////        }
-////
-////        if (StringUtils.isBlank(dto.getCharge())) {
-////            throw new BusinessException("收费规则为空");
-////        }
+//        if (StringUtils.isBlank(dto.getName())) {
+//            throw new BusinessException("课程名称为空");
+//        }
+//
+//        if (StringUtils.isBlank(dto.getMt())) {
+//            throw new BusinessException("课程分类为空");
+//        }
+//
+//        if (StringUtils.isBlank(dto.getSt())) {
+//            throw new BusinessException("课程分类为空");
+//        }
+//
+//        if (StringUtils.isBlank(dto.getGrade())) {
+//            throw new BusinessException("课程等级为空");
+//        }
+//
+//        if (StringUtils.isBlank(dto.getTeachmode())) {
+//            throw new BusinessException("教育模式为空");
+//        }
+//
+//        if (StringUtils.isBlank(dto.getUsers())) {
+//            throw new BusinessException("适应人群为空");
+//        }
+//
+//        if (StringUtils.isBlank(dto.getCharge())) {
+//            throw new BusinessException("收费规则为空");
+//        }
 
         // 课程基本信息对象
         CourseBase courseBase = new CourseBase();

@@ -8,7 +8,6 @@ import lombok.Data;
  * @author Cyan Chau
  * @create 2023-06-07
  */
-@Data
 public class BusinessException extends RuntimeException {
 
     private String errMessage;

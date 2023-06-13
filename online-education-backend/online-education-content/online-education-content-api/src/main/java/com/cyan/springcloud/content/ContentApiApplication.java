@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @create 2023-01-23
  */
 @EnableSwagger2Doc
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.cyan.springcloud.*")
 public class ContentApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(ContentApiApplication.class, args);

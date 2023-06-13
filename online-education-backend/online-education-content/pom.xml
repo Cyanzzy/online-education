@@ -17,5 +17,12 @@
         <module>online-education-content-service</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.cyan.springcloud</groupId>
+            <artifactId>online-education-base</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

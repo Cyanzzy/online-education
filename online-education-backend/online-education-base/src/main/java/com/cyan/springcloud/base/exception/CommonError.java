@@ -23,5 +23,4 @@ public enum CommonError {
     private CommonError( String errMessage) {
         this.errMessage = errMessage;
     }
-
 }
