@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.security.acl.LastOwnerException;
 
 /**
  * 课程基础信息控制层
@@ -68,4 +69,11 @@ public class CourseBaseInfoController {
         return courseBaseService.updateCourseBase(companyId, editCourseDto);
     }
 
+    @ApiOperation("删除课程")
+    @DeleteMapping("/course/{courseId}")
+    public void modifyCourseBase(@PathVariable Long courseId) {
+        // 当前用户所属培训机构的id
+        Long companyId = 1232141425L;
+        courseBaseService.deleteCourse(companyId, courseId);
+    }
 }

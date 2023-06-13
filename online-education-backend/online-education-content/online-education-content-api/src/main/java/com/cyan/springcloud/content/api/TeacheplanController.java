@@ -18,8 +18,8 @@ import java.util.List;
  * @author Cyan Chau
  * @create 2023-06-11
  */
-@Api(value = "课程计划编辑接口",tags = "课程计划编辑接口")
 @RestController
+@Api(value = "课程计划编辑接口",tags = "课程计划编辑接口")
 public class TeacheplanController {
 
     @Resource

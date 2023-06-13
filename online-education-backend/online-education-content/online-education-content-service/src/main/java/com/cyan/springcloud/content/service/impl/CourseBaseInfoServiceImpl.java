@@ -5,18 +5,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cyan.springcloud.base.exception.BusinessException;
 import com.cyan.springcloud.base.model.PageParams;
 import com.cyan.springcloud.base.model.PageResult;
-import com.cyan.springcloud.content.mapper.CourseBaseMapper;
-import com.cyan.springcloud.content.mapper.CourseCategoryMapper;
-import com.cyan.springcloud.content.mapper.CourseMarketMapper;
+import com.cyan.springcloud.content.mapper.*;
 import com.cyan.springcloud.content.service.CourseBaseInfoService;
 import com.cyan.springcloud.content.service.CourseMarketService;
 import com.cyan.springcloud.model.dto.AddCourseDto;
 import com.cyan.springcloud.model.dto.CourseBaseInfoDto;
 import com.cyan.springcloud.model.dto.EditCourseDto;
 import com.cyan.springcloud.model.dto.QueryCourseParamsDto;
-import com.cyan.springcloud.model.po.CourseBase;
-import com.cyan.springcloud.model.po.CourseCategory;
-import com.cyan.springcloud.model.po.CourseMarket;
+import com.cyan.springcloud.model.po.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +42,12 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
 
     @Resource
     private CourseMarketServiceImpl courseMarketService;
+
+    @Resource
+    private CourseTeacherMapper courseTeacherMapper;
+
+    @Resource
+    private TeachplanMapper teachplanMapper;
 
     @Override
     public PageResult<CourseBase> queryCourseBaseList(PageParams pageParams, QueryCourseParamsDto queryCourseParamsDto) {
@@ -243,4 +245,27 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         return result ? 1 : 0;
     }
 
+    @Override
+    @Transactional
+    public void deleteCourse(Long companyId, Long courseId) {
+        CourseBase courseBase = courseBaseMapper.selectById(courseId);
+        if (!companyId.equals(courseBase.getCompanyId())) {
+            BusinessException.cast("只允许删除本机构的课程");
+        }
+        // 删除课程教师信息
+        LambdaQueryWrapper<CourseTeacher> teacherLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        teacherLambdaQueryWrapper.eq(CourseTeacher::getCourseId, courseId);
+        courseTeacherMapper.delete(teacherLambdaQueryWrapper);
+
+        // 删除课程计划
+        LambdaQueryWrapper<Teachplan> teachplanLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        teachplanLambdaQueryWrapper.eq(Teachplan::getCourseId, courseId);
+        teachplanMapper.delete(teachplanLambdaQueryWrapper);
+
+        // 删除营销信息
+        courseMarketMapper.deleteById(courseId);
+
+        // 删除课程基本信息
+        courseBaseMapper.deleteById(courseId);
+    }
 }
