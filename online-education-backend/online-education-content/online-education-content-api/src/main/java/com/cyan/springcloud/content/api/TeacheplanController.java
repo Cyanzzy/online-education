@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -42,5 +43,11 @@ public class TeacheplanController {
     @DeleteMapping("/teachplan/{teachPlanId}")
     public void deleteTeachplan(@PathVariable Long teachPlanId){
         teacplanService.deleteTeachplan(teachPlanId);
+    }
+
+    @ApiOperation("课程计划排序接口")
+    @PostMapping("/teachplan/{moveType}/{teachPlanId}")
+    public void orderByTeachplan(@PathVariable String moveType, @PathVariable Long teachPlanId){
+        teacplanService.orderByTeachplan(moveType, teachPlanId);
     }
 }
