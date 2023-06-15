@@ -13,6 +13,7 @@
         <module>online-education-generator</module>
         <module>online-education-system</module>
         <module>online-education-gateway</module>
+        <module>online-education-media</module>
     </modules>
 
     <packaging>pom</packaging>
