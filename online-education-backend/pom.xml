@@ -12,6 +12,7 @@
         <module>online-education-content</module>
         <module>online-education-generator</module>
         <module>online-education-system</module>
+        <module>online-education-gateway</module>
     </modules>
 
     <packaging>pom</packaging>
