@@ -3,12 +3,3 @@ server:
     context-path: /content
   port: 63040
 
-test_config:
- a: 3a
- b: 3b
-
-#配置本地优先
-spring:
- cloud:
-  config:
-    override-none: true

@@ -3,5 +3,3 @@ server:
     context-path: /system
   port: 63110
 
-testconfig:
- a: 1aa
