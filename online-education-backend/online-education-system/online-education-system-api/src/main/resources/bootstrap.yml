@@ -26,6 +26,7 @@ spring:
           refresh: true
   profiles:
     active: dev # 环境名
+
 #server:
 #  servlet:
 #    context-path: /system

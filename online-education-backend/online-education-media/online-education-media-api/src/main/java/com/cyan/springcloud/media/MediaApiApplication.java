@@ -12,9 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @EnableSwagger2Doc
 @SpringBootApplication
-public class MediaApplication {
+public class MediaApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MediaApplication.class, args);
+        SpringApplication.run(MediaApiApplication.class, args);
     }
 }

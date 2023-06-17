@@ -2,10 +2,14 @@ package com.cyan.springcloud.media.service;
 
 import com.cyan.springcloud.base.model.PageParams;
 import com.cyan.springcloud.base.model.PageResult;
+import com.cyan.springcloud.base.model.RestResponse;
 import com.cyan.springcloud.media.model.dto.QueryMediaParamsDto;
 import com.cyan.springcloud.media.model.dto.UploadFileParamsDto;
 import com.cyan.springcloud.media.model.dto.UploadFileResultDto;
 import com.cyan.springcloud.media.model.po.MediaFiles;
+
+import java.io.IOException;
+import java.util.stream.Stream;
 
 /**
  * 媒资文件管理业务接口
@@ -46,4 +50,49 @@ public interface MediaFileService {
 
     MediaFiles addMediaFilesToDb(Long companyId, String fileMd5, UploadFileParamsDto uploadFileParamsDto, String bucket, String objectName);
 
+    /**
+     * 检查文件是否存在
+     *
+     * @param fileMd5 文件的md5
+     */
+    RestResponse<Boolean> checkFile(String fileMd5);
+
+    /**
+     * 检查分块是否存在
+     *
+     * @param fileMd5  文件的md5
+     * @param chunkIndex  分块序号
+     */
+    RestResponse<Boolean> checkChunk(String fileMd5, int chunkIndex);
+
+    /**
+     * 上传分块
+     *
+     * @param fileMd5  文件md5
+     * @param chunk  分块序号
+     * @param localChunkFilePath  文件路径
+     */
+    RestResponse uploadChunk(String fileMd5, int chunk, String localChunkFilePath);
+
+    /**
+     * 合并分块
+     *
+     * @param companyId 机构id
+     * @param fileMd5 文件md5
+     * @param chunkTotal 文件总和
+     * @param uploadFileParamsDto 文件信息
+     * @return
+     */
+    RestResponse mergeChunks(Long companyId, String fileMd5, int chunkTotal, UploadFileParamsDto uploadFileParamsDto) throws IOException;
+
+    /**
+     * 原始方法 有BUG
+     *
+     * @param companyId 机构id
+     * @param fileMd5 文件md5
+     * @param chunkTotal 文件总和
+     * @param uploadFileParamsDto 文件信息
+     * @return
+     */
+    RestResponse mergeChunksOld(Long companyId, String fileMd5, int chunkTotal, UploadFileParamsDto uploadFileParamsDto);
 }
