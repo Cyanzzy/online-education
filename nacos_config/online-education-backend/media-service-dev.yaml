@@ -27,7 +27,8 @@ xxl:
       logpath: /data/applogs/xxl-job/jobhandler
       logretentiondays: 30
     accessToken: default_token
-
 videoprocess:
- ffmpegpath: D:/soft/ffmpeg/ffmpeg.exe
+ ffmpegpath: D:/environment/ffmpeg/ffmpeg.exe
+
+
 

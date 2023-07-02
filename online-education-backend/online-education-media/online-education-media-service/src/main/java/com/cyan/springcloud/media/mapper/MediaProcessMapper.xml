@@ -14,6 +14,7 @@
         <result column="url" property="url"/>
         <result column="file_path" property="filePath"/>
         <result column="errormsg" property="errormsg"/>
+        <result column="fail_count" property="failCount"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -21,4 +22,19 @@
         id, file_id, filename, bucket, status, create_date, finish_date, url, file_path, errormsg
     </sql>
 
+    <select id="selectListByShardIndex" resultType="com.cyan.springcloud.media.model.po.MediaProcess">
+      SELECT * FROM media_process t
+      WHERE t.id % #{shardTotal} = #{shardIndex}
+      AND (t.status = '1' OR t.status = '3')
+      AND t.fail_count &lt; 3
+      LIMIT #{count}
+    </select>
+
+    <update id="startTask">
+        UPDATE media_process m
+        SET m.status = '4'
+        WHERE (m.status = '1' OR m.status = '3')
+        AND m.fail_count &lt; 3
+        AND m.id = #{id}
+    </update>
 </mapper>

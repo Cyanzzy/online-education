@@ -7,8 +7,13 @@ import com.cyan.springcloud.media.model.dto.QueryMediaParamsDto;
 import com.cyan.springcloud.media.model.dto.UploadFileParamsDto;
 import com.cyan.springcloud.media.model.dto.UploadFileResultDto;
 import com.cyan.springcloud.media.model.po.MediaFiles;
+import io.minio.GetObjectArgs;
+import org.apache.commons.io.IOUtils;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.stream.Stream;
 
 /**
@@ -95,4 +100,25 @@ public interface MediaFileService {
      * @return
      */
     RestResponse mergeChunksOld(Long companyId, String fileMd5, int chunkTotal, UploadFileParamsDto uploadFileParamsDto);
+
+    /**
+     * 原始downloadFileFromMinIO
+     * 根据桶和文件路径从minio下载文件
+     *
+     * @param bucket
+     * @param objectName
+     * @return
+     */
+    File downloadFileFromMinIOOld(String bucket, String objectName);
+
+    /**
+     * 将文件上传到minio
+     *
+     * @param localFilePath 本地文件路径
+     * @param mimeType      媒体类型
+     * @param bucket        桶
+     * @param objectName    对象
+     * @return
+     */
+    boolean addMediaFilesToMinIO(String localFilePath, String mimeType, String bucket, String objectName);
 }

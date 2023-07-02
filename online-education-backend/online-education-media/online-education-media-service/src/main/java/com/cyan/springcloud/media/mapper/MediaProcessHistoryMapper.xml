@@ -14,6 +14,7 @@
         <result column="finish_date" property="finishDate"/>
         <result column="url" property="url"/>
         <result column="errormsg" property="errormsg"/>
+        <result column="fail_count" property="failCount"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

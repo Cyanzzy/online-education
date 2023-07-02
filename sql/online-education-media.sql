@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80026
 File Encoding         : 65001
 
-Date: 2023-06-15 14:43:27
+Date: 2023-07-02 16:56:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,32 +45,9 @@ CREATE TABLE `media_files` (
 -- ----------------------------
 -- Records of media_files
 -- ----------------------------
-INSERT INTO `media_files` VALUES ('1580180577525002241', '1232141425', null, '1.jpg', '001003', null, 'mediafiles', null, '8383a8c2c1d098fcc07da7d6e79ae31e', '/mediafiles/2022/10/12/8383a8c2c1d098fcc07da7d6e79ae31e.jpg', null, '2022-10-12 20:56:23', null, '1', null, null, null, '5767');
-INSERT INTO `media_files` VALUES ('1d0f0e6ed8a0c4a89bfd304b84599d9c', '1232141425', null, 'asset-icoGather.png', '001001', null, 'mediafiles', '2022/09/20/1d0f0e6ed8a0c4a89bfd304b84599d9c.png', '1d0f0e6ed8a0c4a89bfd304b84599d9c', '/mediafiles/2022/09/20/1d0f0e6ed8a0c4a89bfd304b84599d9c.png', null, '2022-09-20 21:21:28', null, '1', '', '002003', null, '8059');
-INSERT INTO `media_files` VALUES ('1f229319d6fed3431d2f9d06193a433b', '1232141425', null, '01-分布式事务专题课程介绍.avi', '001002', '课程视频', 'video', '1/f/1f229319d6fed3431d2f9d06193a433b/1f229319d6fed3431d2f9d06193a433b.avi', '1f229319d6fed3431d2f9d06193a433b', '/video/1/f/1f229319d6fed3431d2f9d06193a433b/1f229319d6fed3431d2f9d06193a433b.mp4', null, '2022-09-14 18:30:02', null, '1', '', '002003', null, '14705152');
-INSERT INTO `media_files` VALUES ('23f83ae728bd1269eee7ea2236e79644', '1232141425', null, '16-Nacos配置管理-课程总结.avi', '001002', '课程视频', 'video', '2/3/23f83ae728bd1269eee7ea2236e79644/23f83ae728bd1269eee7ea2236e79644.avi', '23f83ae728bd1269eee7ea2236e79644', '/video/2/3/23f83ae728bd1269eee7ea2236e79644/23f83ae728bd1269eee7ea2236e79644.mp4', null, '2022-09-14 18:21:44', null, '1', '', '002003', null, '26053632');
-INSERT INTO `media_files` VALUES ('287cdd91c5d444e0752b626cbd95b41c', '1232141425', null, 'nacos01.mp4', '001002', '课程视频', 'video', '2/8/287cdd91c5d444e0752b626cbd95b41c/287cdd91c5d444e0752b626cbd95b41c.mp4', '287cdd91c5d444e0752b626cbd95b41c', '/video/2/8/287cdd91c5d444e0752b626cbd95b41c/287cdd91c5d444e0752b626cbd95b41c.mp4', null, '2022-09-14 18:28:43', null, '1', '', '002003', null, '25953447');
-INSERT INTO `media_files` VALUES ('33c643206bb7c08e2cb99b622d7a1b63', '1232141425', null, '1.png', '001001', null, 'mediafiles', '2022/10/07/33c643206bb7c08e2cb99b622d7a1b63.png', '33c643206bb7c08e2cb99b622d7a1b63', '/mediafiles/2022/10/07/33c643206bb7c08e2cb99b622d7a1b63.png', null, '2022-10-07 06:20:05', null, '1', '', '002003', null, '169788');
-INSERT INTO `media_files` VALUES ('345db593849aada5675ed1e438650eeb', '1232141425', null, '1.png', '001001', null, 'mediafiles', '2022/10/07/345db593849aada5675ed1e438650eeb.png', '345db593849aada5675ed1e438650eeb', '/mediafiles/2022/10/07/345db593849aada5675ed1e438650eeb.png', null, '2022-10-07 09:31:46', null, '1', '', '002003', null, '70171');
-INSERT INTO `media_files` VALUES ('3a5a861d1c745d05166132c47b44f9e4', '1232141425', null, '01-Nacos配置管理-内容介绍.avi', '001002', '课程视频', 'video', '3/a/3a5a861d1c745d05166132c47b44f9e4/3a5a861d1c745d05166132c47b44f9e4.avi', '3a5a861d1c745d05166132c47b44f9e4', '/video/3/a/3a5a861d1c745d05166132c47b44f9e4/3a5a861d1c745d05166132c47b44f9e4.mp4', null, '2022-09-14 18:19:24', null, '1', '', '002003', null, '23839232');
-INSERT INTO `media_files` VALUES ('3fb1d9a565cb92f395f384bd62ef24cd', '1232141425', null, '1614759607876_0.png', '001001', '课程图片', 'mediafiles', '2022/09/20/3fb1d9a565cb92f395f384bd62ef24cd.png', '3fb1d9a565cb92f395f384bd62ef24cd', '/mediafiles/2022/09/20/3fb1d9a565cb92f395f384bd62ef24cd.png', null, '2022-09-20 21:06:11', null, '1', '', '002003', null, '58873');
-INSERT INTO `media_files` VALUES ('500598cae139f77c1bb54459909e0443', '1232141425', null, 'course8561649859933456434.html', '001003', null, 'mediafiles', 'course/119.html', '500598cae139f77c1bb54459909e0443', '/mediafiles/course/119.html', null, '2022-10-07 09:39:49', null, '1', '', '002003', null, '35652');
-INSERT INTO `media_files` VALUES ('6ad24a762f67c18f61966c1b8c55abe6', '1232141425', null, '07-分布式事务基础理论-BASE理论.avi', '001002', '课程视频', 'video', '6/a/6ad24a762f67c18f61966c1b8c55abe6/6ad24a762f67c18f61966c1b8c55abe6.avi', '6ad24a762f67c18f61966c1b8c55abe6', '/video/6/a/6ad24a762f67c18f61966c1b8c55abe6/6ad24a762f67c18f61966c1b8c55abe6.mp4', null, '2022-09-14 18:30:16', null, '1', '', '002003', null, '13189632');
-INSERT INTO `media_files` VALUES ('70a98b4a2fffc89e50b101f959cc33ca', '1232141425', null, '22-Hmily实现TCC事务-开发bank2的confirm方法.avi', '001002', '课程视频', 'video', '7/0/70a98b4a2fffc89e50b101f959cc33ca/70a98b4a2fffc89e50b101f959cc33ca.avi', '70a98b4a2fffc89e50b101f959cc33ca', '/video/7/0/70a98b4a2fffc89e50b101f959cc33ca/70a98b4a2fffc89e50b101f959cc33ca.mp4', null, '2022-09-14 18:30:52', null, '1', '', '002003', null, '18444288');
-INSERT INTO `media_files` VALUES ('74b386417bb9f3764009dc94068a5e44', '1232141425', null, 'test2.html', '001003', null, 'mediafiles', 'course/74b386417bb9f3764009dc94068a5e44.html', '74b386417bb9f3764009dc94068a5e44', '/mediafiles/course/74b386417bb9f3764009dc94068a5e44.html', null, '2022-09-20 21:56:02', null, '1', '', '002003', null, '40124');
-INSERT INTO `media_files` VALUES ('757891eae4473e7ba78827656b1ccacf', '1232141425', null, 'studyuser.png', '001001', null, 'mediafiles', null, '757891eae4473e7ba78827656b1ccacf', '/mediafiles/2022/10/13/757891eae4473e7ba78827656b1ccacf.png', null, '2022-10-13 19:57:01', null, '1', null, '002003', null, '4922');
-INSERT INTO `media_files` VALUES ('8026f17cf7b8697eccec2c8406d0c96c', '1232141425', null, 'nacos.png', '001001', null, 'mediafiles', '2022/10/04/8026f17cf7b8697eccec2c8406d0c96c.png', '8026f17cf7b8697eccec2c8406d0c96c', '/mediafiles/2022/10/04/8026f17cf7b8697eccec2c8406d0c96c.png', null, '2022-10-04 18:55:01', null, '1', '', '002003', null, '128051');
-INSERT INTO `media_files` VALUES ('809694a6a974c35e3a36f36850837d7c', '1232141425', null, '1.avi', '001002', '课程视频', 'video', null, '809694a6a974c35e3a36f36850837d7c', '/video/8/0/809694a6a974c35e3a36f36850837d7c/809694a6a974c35e3a36f36850837d7c.avi', null, '2022-10-13 21:27:14', null, '1', '', '002003', null, null);
-INSERT INTO `media_files` VALUES ('a16da7a132559daf9e1193166b3e7f52', '1232141425', null, '1.jpg', '001003', null, 'mediafiles', '2022/09/20/a16da7a132559daf9e1193166b3e7f52.jpg', 'a16da7a132559daf9e1193166b3e7f52', '/mediafiles/2022/09/20/a16da7a132559daf9e1193166b3e7f52.jpg', null, '2022-09-20 21:26:08', null, '1', '', '002003', null, '248329');
-INSERT INTO `media_files` VALUES ('a6fb4fc7faf1d3d0831819969529b888', '1232141425', null, '1.项目背景.mp4', '001002', '课程视频', 'video', null, 'a6fb4fc7faf1d3d0831819969529b888', '/video/a/6/a6fb4fc7faf1d3d0831819969529b888/a6fb4fc7faf1d3d0831819969529b888.mp4', null, '2022-10-13 21:30:17', null, '1', '', '002003', null, null);
-INSERT INTO `media_files` VALUES ('b2deb4a098bb12653c57bbaa0099697a', '1232141425', null, 'course3448922126748441722.html', '001003', null, 'mediafiles', 'course/117.html', 'b2deb4a098bb12653c57bbaa0099697a', '/mediafiles/course/117.html', null, '2022-10-04 19:20:01', null, '1', '', '002003', null, '37705');
-INSERT INTO `media_files` VALUES ('ca1d75b0a37b85fafd5f2e443f6f3f01', '1232141425', null, 'course2996275631019924973.html', '001003', null, 'mediafiles', 'course/118.html', 'ca1d75b0a37b85fafd5f2e443f6f3f01', '/mediafiles/course/118.html', null, '2022-10-07 06:40:51', null, '1', '', '002003', null, '35905');
-INSERT INTO `media_files` VALUES ('d4af959873182feb0fdb91dc6c1958b5', '1232141425', null, 'widget-5.png', '001001', '课程图片', 'mediafiles', '2022/09/18/d4af959873182feb0fdb91dc6c1958b5.png', 'd4af959873182feb0fdb91dc6c1958b5', '/mediafiles/2022/09/18/d4af959873182feb0fdb91dc6c1958b5.png', null, '2022-09-18 21:49:55', null, '1', '', '002003', null, '17799');
-INSERT INTO `media_files` VALUES ('db4e24f27d78ccac14401b7479b35c26', '1232141425', null, 'nonepic.jpg', '001001', null, 'mediafiles', '2022/09/23/db4e24f27d78ccac14401b7479b35c26.jpg', 'db4e24f27d78ccac14401b7479b35c26', '/mediafiles/2022/09/23/db4e24f27d78ccac14401b7479b35c26.jpg', null, '2022-09-23 18:27:26', null, '1', '', '002003', null, '6919');
-INSERT INTO `media_files` VALUES ('df39983fcad83a6ceef14bfeeb1bc523', '1232141425', null, 'add.jpg', '001001', null, 'mediafiles', '2022/09/20/df39983fcad83a6ceef14bfeeb1bc523.jpg', 'df39983fcad83a6ceef14bfeeb1bc523', '/mediafiles/2022/09/20/df39983fcad83a6ceef14bfeeb1bc523.jpg', null, '2022-09-20 21:13:59', null, '1', '', '002003', null, '10487');
-INSERT INTO `media_files` VALUES ('e00ce88f53cc391d9ffd51a81834d2af', '1232141425', null, 'widget-1.jpg', '001001', '课程图片', 'mediafiles', '2022/09/18/e00ce88f53cc391d9ffd51a81834d2af.jpg', 'e00ce88f53cc391d9ffd51a81834d2af', '/mediafiles/2022/09/18/e00ce88f53cc391d9ffd51a81834d2af.jpg', null, '2022-09-18 21:48:50', null, '1', '', '002003', null, '71386');
-INSERT INTO `media_files` VALUES ('e726b71ba99c70e8c9d2850c2a7019d7', '1232141425', null, 'asset-login_img.jpg', '001001', null, 'mediafiles', '2022/09/20/e726b71ba99c70e8c9d2850c2a7019d7.jpg', 'e726b71ba99c70e8c9d2850c2a7019d7', '/mediafiles/2022/09/20/e726b71ba99c70e8c9d2850c2a7019d7.jpg', null, '2022-09-20 21:44:50', null, '1', '', '002003', null, '22620');
-INSERT INTO `media_files` VALUES ('fbb57de7001cccf1e28fbe34c7506ddc', '1232141425', null, 'asset-logo.png', '001001', null, 'mediafiles', '2022/09/20/fbb57de7001cccf1e28fbe34c7506ddc.png', 'fbb57de7001cccf1e28fbe34c7506ddc', '/mediafiles/2022/09/20/fbb57de7001cccf1e28fbe34c7506ddc.png', null, '2022-09-20 21:55:25', null, '1', '', '002003', null, '4355');
+INSERT INTO `media_files` VALUES ('0291455bfdfbf20e54df3da879edf7b3', '1232141425', null, '4视频处理.avi', '001002', '视频文件', 'video', '0/2/0291455bfdfbf20e54df3da879edf7b3/0291455bfdfbf20e54df3da879edf7b3.avi', '0291455bfdfbf20e54df3da879edf7b3', '/video/0/2/0291455bfdfbf20e54df3da879edf7b3/0291455bfdfbf20e54df3da879edf7b3.avi', null, '2023-07-02 16:32:14', null, '1', null, '002003', null, '4278748');
+INSERT INTO `media_files` VALUES ('6e9b5526d3df605f765468d5e252d62a', '1232141425', null, '2视频处理.avi', '001002', '视频文件', 'video', '6/e/6e9b5526d3df605f765468d5e252d62a/6e9b5526d3df605f765468d5e252d62a.avi', '6e9b5526d3df605f765468d5e252d62a', '/video/6/e/6e9b5526d3df605f765468d5e252d62a/6e9b5526d3df605f765468d5e252d62a.avi', null, '2023-07-02 16:32:13', null, '1', null, '002003', null, '9020692');
+INSERT INTO `media_files` VALUES ('b587d61355ad312c32b490e6b6e5a057', '1232141425', null, '1视频处理.avi', '001002', '视频文件', 'video', 'b/5/b587d61355ad312c32b490e6b6e5a057/b587d61355ad312c32b490e6b6e5a057.avi', 'b587d61355ad312c32b490e6b6e5a057', '/video/b/5/b587d61355ad312c32b490e6b6e5a057/b587d61355ad312c32b490e6b6e5a057.avi', null, '2023-07-02 16:32:13', null, '1', null, '002003', null, '30480140');
 
 -- ----------------------------
 -- Table structure for media_process
@@ -87,13 +64,17 @@ CREATE TABLE `media_process` (
   `finish_date` datetime DEFAULT NULL COMMENT '完成时间',
   `url` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '媒资文件访问地址',
   `errormsg` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '失败原因',
+  `fail_count` int NOT NULL DEFAULT '0' COMMENT '失败次数',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `unique_fileid` (`file_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of media_process
 -- ----------------------------
+INSERT INTO `media_process` VALUES ('3', '6e9b5526d3df605f765468d5e252d62a', '2视频处理.avi', 'video', '6/e/6e9b5526d3df605f765468d5e252d62a/6e9b5526d3df605f765468d5e252d62a.avi', '1', '2023-07-02 16:32:13', null, '/video/6/e/6e9b5526d3df605f765468d5e252d62a/6e9b5526d3df605f765468d5e252d62a.avi', null, '0');
+INSERT INTO `media_process` VALUES ('4', 'b587d61355ad312c32b490e6b6e5a057', '1视频处理.avi', 'video', 'b/5/b587d61355ad312c32b490e6b6e5a057/b587d61355ad312c32b490e6b6e5a057.avi', '1', '2023-07-02 16:32:13', null, '/video/b/5/b587d61355ad312c32b490e6b6e5a057/b587d61355ad312c32b490e6b6e5a057.avi', null, '0');
+INSERT INTO `media_process` VALUES ('5', '0291455bfdfbf20e54df3da879edf7b3', '4视频处理.avi', 'video', '0/2/0291455bfdfbf20e54df3da879edf7b3/0291455bfdfbf20e54df3da879edf7b3.avi', '1', '2023-07-02 16:32:14', null, '/video/0/2/0291455bfdfbf20e54df3da879edf7b3/0291455bfdfbf20e54df3da879edf7b3.avi', null, '0');
 
 -- ----------------------------
 -- Table structure for media_process_history
@@ -110,17 +91,13 @@ CREATE TABLE `media_process_history` (
   `url` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '媒资文件访问地址',
   `file_path` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '文件路径',
   `errormsg` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '失败原因',
+  `fail_count` int DEFAULT '0' COMMENT '失败次数',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of media_process_history
 -- ----------------------------
-INSERT INTO `media_process_history` VALUES ('1', '1f229319d6fed3431d2f9d06193a433b', '01-分布式事务专题课程介绍.avi', 'video', '2', '2022-09-14 18:30:02', '2022-09-14 20:32:12', 'video1/f/1f229319d6fed3431d2f9d06193a433b/1f229319d6fed3431d2f9d06193a433b.mp4', '1/f/1f229319d6fed3431d2f9d06193a433b/1f229319d6fed3431d2f9d06193a433b.avi', null);
-INSERT INTO `media_process_history` VALUES ('2', '23f83ae728bd1269eee7ea2236e79644', '16-Nacos配置管理-课程总结.avi', 'video', '2', '2022-09-14 18:21:44', '2022-09-14 20:32:20', 'video2/3/23f83ae728bd1269eee7ea2236e79644/23f83ae728bd1269eee7ea2236e79644.mp4', '2/3/23f83ae728bd1269eee7ea2236e79644/23f83ae728bd1269eee7ea2236e79644.avi', null);
-INSERT INTO `media_process_history` VALUES ('3', '3a5a861d1c745d05166132c47b44f9e4', '01-Nacos配置管理-内容介绍.avi', 'video', '2', '2022-09-14 18:19:24', '2022-09-14 20:33:27', 'video3/a/3a5a861d1c745d05166132c47b44f9e4/3a5a861d1c745d05166132c47b44f9e4.mp4', '3/a/3a5a861d1c745d05166132c47b44f9e4/3a5a861d1c745d05166132c47b44f9e4.avi', null);
-INSERT INTO `media_process_history` VALUES ('4', '6ad24a762f67c18f61966c1b8c55abe6', '07-分布式事务基础理论-BASE理论.avi', 'video', '2', '2022-09-14 18:30:16', '2022-09-14 20:33:46', 'video6/a/6ad24a762f67c18f61966c1b8c55abe6/6ad24a762f67c18f61966c1b8c55abe6.mp4', '6/a/6ad24a762f67c18f61966c1b8c55abe6/6ad24a762f67c18f61966c1b8c55abe6.avi', null);
-INSERT INTO `media_process_history` VALUES ('5', '70a98b4a2fffc89e50b101f959cc33ca', '22-Hmily实现TCC事务-开发bank2的confirm方法.avi', 'video', '2', '2022-09-14 18:30:52', '2022-09-14 20:34:33', 'video7/0/70a98b4a2fffc89e50b101f959cc33ca/70a98b4a2fffc89e50b101f959cc33ca.mp4', '7/0/70a98b4a2fffc89e50b101f959cc33ca/70a98b4a2fffc89e50b101f959cc33ca.avi', null);
 
 -- ----------------------------
 -- Table structure for mq_message
