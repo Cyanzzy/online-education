@@ -24,6 +24,9 @@ spring:
         - data-id: logging-${spring.profiles.active}.yaml
           group: online-education-common
           refresh: true
+        - data-id: freemarker-config-${spring.profiles.active}.yaml
+          group: online-education-common
+          refresh: true
   profiles:
     active: dev # 环境名
 
