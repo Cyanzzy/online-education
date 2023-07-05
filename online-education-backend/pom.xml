@@ -14,6 +14,7 @@
         <module>online-education-system</module>
         <module>online-education-gateway</module>
         <module>online-education-media</module>
+        <module>online-education-message-sdk</module>
     </modules>
 
     <packaging>pom</packaging>

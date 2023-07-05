@@ -1,4 +1,4 @@
-package com.cyan.springcloud;
+package com.cyan.springcloud.content;
 
 import com.cyan.springcloud.base.model.PageParams;
 import com.cyan.springcloud.base.model.PageResult;

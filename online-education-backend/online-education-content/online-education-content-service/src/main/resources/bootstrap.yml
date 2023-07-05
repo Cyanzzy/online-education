@@ -3,23 +3,19 @@ spring:
     name: content-service
   cloud:
     nacos:
-#      discovery: # 服务注册
-#        server-addr: localhost:8848
-#        namespace: ${spring.profiles.active}
-#        group: online-education-backend
+      discovery: # 服务注册
+        server-addr: localhost:8848
+        namespace: dev
+        group: online-education-backend
       config: # 配置中心
         server-addr: localhost:8848
         namespace: ${spring.profiles.active}
         group: online-education-backend
         file-extension: yaml
         refresh-enabled: true
+        shared-configs:
+          - data-id: feign-${spring.profiles.active}.yaml
+            group: online-education-common
+            refresh: true
   profiles:
     active: dev # 环境名
-#  datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/online_education_content?userUnicode=true&useSSL=false
-#    username: root
-#    password: root
-
-logging:
-  config: classpath:log4j2-dev.xml

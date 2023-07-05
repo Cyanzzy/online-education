@@ -1,4 +1,4 @@
-package com.cyan.springcloud;
+package com.cyan.springcloud.content;
 
 import com.cyan.springcloud.content.mapper.CourseCategoryMapper;
 import com.cyan.springcloud.model.dto.CourseCategoryTreeDto;

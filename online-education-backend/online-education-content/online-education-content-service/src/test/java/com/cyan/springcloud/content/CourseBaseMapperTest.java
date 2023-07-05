@@ -1,4 +1,4 @@
-package com.cyan.springcloud;
+package com.cyan.springcloud.content;
 
 import com.cyan.springcloud.content.mapper.CourseBaseMapper;
 import com.cyan.springcloud.model.po.CourseBase;
