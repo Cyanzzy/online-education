@@ -1,14 +1,19 @@
 package com.cyan.springcloud.content.service.jobhandler;
 
 import com.cyan.springcloud.base.exception.BusinessException;
+import com.cyan.springcloud.content.feignclient.CourseIndex;
+import com.cyan.springcloud.content.feignclient.SearchServiceClient;
+import com.cyan.springcloud.content.mapper.CoursePublishMapper;
 import com.cyan.springcloud.content.service.CoursePublishService;
 import com.cyan.springcloud.messagesdk.model.po.MqMessage;
 import com.cyan.springcloud.messagesdk.service.MessageProcessAbstract;
 import com.cyan.springcloud.messagesdk.service.MqMessageService;
 import com.cyan.springcloud.model.po.CoursePublish;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.xxl.job.core.context.XxlJobHelper;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -26,6 +31,12 @@ public class CoursePublishTask extends MessageProcessAbstract {
 
     @Resource
     private CoursePublishService coursePublishService;
+
+    @Resource
+    private SearchServiceClient searchServiceClient;
+
+    @Resource
+    private CoursePublishMapper coursePublishMapper;
 
     @XxlJob("CoursePublishJobHandler")
     public void coursePublishJobHandler() throws Exception {
@@ -63,7 +74,7 @@ public class CoursePublishTask extends MessageProcessAbstract {
         saveCourseIndex(mqMessage, courseId);
 
         // 向redis写缓存
-
+        // TODO
 
         return true;
     }
@@ -119,7 +130,17 @@ public class CoursePublishTask extends MessageProcessAbstract {
             return;
         }
 
-        // 查询课程信息，调用搜
+        // 查询课程信息，调用搜索服务添加索引接口
+
+        // 从课程发布表查询课程信息
+        CoursePublish coursePublish = coursePublishMapper.selectById(courseId);
+        CourseIndex courseIndex = new CourseIndex();
+        BeanUtils.copyProperties(coursePublish, courseIndex);
+        // 远程调用搜索服务
+        Boolean add = searchServiceClient.add(courseIndex);
+        if (!add) {
+           BusinessException.cast("远程调用添加索引服务失败");
+        }
 
         // 任务处理完成， 任务状态-->完成
         mqMessageService.completedStageOne(taskId);
