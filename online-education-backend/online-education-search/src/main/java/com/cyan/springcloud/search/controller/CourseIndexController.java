@@ -24,7 +24,6 @@ public class CourseIndexController {
 
     @Value("${elasticsearch.course.index}")
     private String courseIndexStore;
-//    private String courseIndexStore = "course-publish";
 
     @Resource
     private IndexService indexService;

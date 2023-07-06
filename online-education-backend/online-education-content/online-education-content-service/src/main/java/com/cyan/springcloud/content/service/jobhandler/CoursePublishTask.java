@@ -1,6 +1,7 @@
 package com.cyan.springcloud.content.service.jobhandler;
 
 import com.cyan.springcloud.base.exception.BusinessException;
+
 import com.cyan.springcloud.content.feignclient.CourseIndex;
 import com.cyan.springcloud.content.feignclient.SearchServiceClient;
 import com.cyan.springcloud.content.mapper.CoursePublishMapper;

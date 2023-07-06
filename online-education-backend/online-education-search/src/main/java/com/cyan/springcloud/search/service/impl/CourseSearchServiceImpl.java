@@ -48,10 +48,9 @@ public class CourseSearchServiceImpl implements CourseSearchService {
 
     @Value("${elasticsearch.course.index}")
     private String courseIndexStore;
-//private String courseIndexStore = "course-publish";
+
     @Value("${elasticsearch.course.source_fields}")
     private String sourceFields;
-//private String sourceFields = "id,name,grade,mt,st,charge,pic,price,originalPrice,teachmode,validDays,createDate";
 
     @Resource
     private RestHighLevelClient client;

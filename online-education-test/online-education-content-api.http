@@ -84,6 +84,10 @@ DELETE {{content_host}}/content/courseTeacher/course/42/26
 ### 删除课程
 DELETE {{content_host}}/content/course/87
 
+### 携带token访问资源服务
+GET http://localhost:63040/content/course/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsieHVlY2hlbmctcGx1cyJdLCJ1c2VyX25hbWUiOiJ6aGFuZ3NhbiIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE2ODg2NTgzODcsImF1dGhvcml0aWVzIjpbInAxIl0sImp0aSI6IjE2MzRjNDkwLWRlNmYtNGRlMC04MjE3LTdlODU3MmE1MDYzNiIsImNsaWVudF9pZCI6IlhjV2ViQXBwIn0.3jKDfLluAoJBrcOdQW8EXVMgM589Lj1uQmgj6GhGwG4
+
 ###
 
 

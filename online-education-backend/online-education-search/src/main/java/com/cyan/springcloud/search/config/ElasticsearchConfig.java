@@ -15,8 +15,6 @@ public class ElasticsearchConfig {
 
     @Value("${elasticsearch.hostlist}")
     private String hostlist;
-//      private String hostlist = "localhost:9200";
-
 
     @Bean
     public RestHighLevelClient restHighLevelClient() {
