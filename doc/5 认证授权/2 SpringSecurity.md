@@ -894,3 +894,88 @@ public UserDetailsService userDetailsService() {
 ```
 
 3、我们在使用密码模式生成jwt令牌时用的是zhangsan的信息，所以jwt令牌中存储了zhangsan的信息，那么在资源服务中应该取出zhangsan的信息才对。
+
+# 网关认证
+
+## 技术方案
+
+到目前为止，测试通过了认证服务颁发jwt令牌，客户端携带jwt访问资源服务，资源服务对jwt的合法性进行验证  
+
+![](https://cyan-images.oss-cn-shanghai.aliyuncs.com/images/online-education-20230122-152.png)
+
+仔细观察此图，遗漏了本项目架构中非常重要的组件：网关，加上网关并完善后如下图所示：
+
+![](https://cyan-images.oss-cn-shanghai.aliyuncs.com/images/online-education-20230122-153.png)
+
+所有访问微服务的请求都要经过网关，在网关进行用户身份的认证可以将很多非法的请求拦截到微服务以外，这叫做网关认证。
+
+下边需要明确网关的职责：
+
+> 网站白名单维护
+
+针对不用认证的URL全部放行。
+
+> 校验jwt的合法性。
+
+除了白名单剩下的就是需要认证的请求，网关需要验证jwt的合法性，jwt合法则说明用户身份合法，否则说明身份不合法则拒绝继续访问。
+
+**网关不负责授权，对请求的授权操作在各个微服务进行，因为微服务最清楚用户有哪些权限访问哪些接口。**
+
+## 实现网关认证
+
+下边实现网关认证，实现以下职责：
+
+**网站白名单维护**：针对不用认证的URL全部放行。
+
+**校验jwt的合法性**：除了白名单剩下的就是需要认证的请求，网关需要验证jwt的合法性，jwt合法则说明用户身份合法，否则说明身份不合法则拒绝继续访问。
+
+> 在网关工程添加依赖  
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-security</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-oauth2</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+</dependency>
+```
+
+> 配置令牌策略、安全配置、网关认证过滤器
+
+详见TokenConfig.java、SecurityConfig.java、GatewayAuthFilter.java
+
+> 配置白名单文件security-whitelist.properties
+
+```properties
+/**=临时全部放行
+/auth/**=认证地址
+/content/open/**=内容管理公开访问接口
+/media/open/**=媒资管理公开访问接口
+```
+
+> 重启网关工程，进行测试
+
+1、申请令牌
+
+2、通过网关访问资源服务
+
+```json
+### 通过网关访问资源服务
+GET http://localhost:63010/content/course/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ6aGFuZ3NhbiIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE2NjQzNjIzMTAsImF1dGhvcml0aWVzIjpbInAxIl0sImp0aSI6Ijc2OTkwMGNiLWM1ZjItNGRiNC1hZWJmLWY1MzgxZDQxZWMyZCIsImNsaWVudF9pZCI6ImMxIn0.lOITjUgYg2HCh5mDPK9EvJJqz-tIupKVfmP8yWJQIKs
+```
+
+当token正确时可以正常访问资源服务，token验证失败返回token无效：
+
+注意：网关鉴权功能调试通过后，由于目前还没有开发认证功能，前端请求网关的URL不在白名单中间时会“没有认证”的错误，暂时在白名单中添加 全部放行配置，待认证功能开发完成再屏蔽全部放行配置，
+

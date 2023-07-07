@@ -3,6 +3,7 @@ package com.cyan.springcloud.content.api;
 import com.cyan.springcloud.base.exception.ValidationGroups;
 import com.cyan.springcloud.base.model.PageParams;
 import com.cyan.springcloud.base.model.PageResult;
+import com.cyan.springcloud.content.utils.SecurityUtil;
 import com.cyan.springcloud.model.dto.AddCourseDto;
 import com.cyan.springcloud.model.dto.CourseBaseInfoDto;
 import com.cyan.springcloud.model.dto.EditCourseDto;
@@ -59,9 +60,11 @@ public class CourseBaseInfoController {
     @ApiOperation("根据id查询课程信息接口")
     @GetMapping("/course/{courseId}")
     public CourseBaseInfoDto getCourseBaseById(@PathVariable Long courseId) {
-        // 获取当前用户身份
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(">>>>>>>>>>>>>>>>>>>principal=: " + principal);
+//        // 获取当前用户身份
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        System.out.println(">>>>>>>>>>>>>>>>>>>principal=: " + principal);
+        SecurityUtil.XcUser user = SecurityUtil.getUser();
+        System.out.println(">>>>>>>>>>>>>>>>>> username: " + user.getUsername());
         return courseBaseService.getCourseBaseInfo(courseId);
     }
 
