@@ -1,11 +1,13 @@
 package com.cyan.springcloud.ucenter.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.cyan.springcloud.ucenter.feignclient.CheckCodeClient;
 import com.cyan.springcloud.ucenter.mapper.XcUserMapper;
 import com.cyan.springcloud.ucenter.model.dto.AuthParamsDto;
 import com.cyan.springcloud.ucenter.model.dto.XcUserExt;
 import com.cyan.springcloud.ucenter.model.po.XcUser;
 import com.cyan.springcloud.ucenter.service.AuthService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,13 +30,30 @@ public class PasswordAuthServiceImpl implements AuthService {
     @Resource
     private PasswordEncoder passwordEncoder;
 
+    @Resource
+    private CheckCodeClient checkCodeClient;
+
     @Override
     public XcUserExt execute(AuthParamsDto authParamsDto) {
 
         // 账号
         String username = authParamsDto.getUsername();
 
-        // TODO 校验验证码
+        // 前端输入的验证码
+        String checkcode = authParamsDto.getCheckcode();
+        // 验证码对应的Key
+        String checkcodekey = authParamsDto.getCheckcodekey();
+        if (StringUtils.isEmpty(checkcode) || StringUtils.isEmpty(checkcodekey)) {
+            throw new RuntimeException("请输入验证码");
+        }
+        // 远程调用验证码服务 校验验证码
+        Boolean verify = checkCodeClient.verify(checkcodekey, checkcode);
+
+        if (verify == null || !verify) {
+            throw new RuntimeException("验证码输入错误");
+        }
+
+
 
         // *********账户是否存在
         XcUser xcUser = xcUserMapper.selectOne(new LambdaQueryWrapper<XcUser>().eq(XcUser::getUsername, username));
