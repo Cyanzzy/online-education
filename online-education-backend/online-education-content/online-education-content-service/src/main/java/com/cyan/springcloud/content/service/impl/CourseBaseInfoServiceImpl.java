@@ -50,7 +50,7 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
     private TeachplanMapper teachplanMapper;
 
     @Override
-    public PageResult<CourseBase> queryCourseBaseList(PageParams pageParams, QueryCourseParamsDto queryCourseParamsDto) {
+    public PageResult<CourseBase> queryCourseBaseList(Long companyId, PageParams pageParams, QueryCourseParamsDto queryCourseParamsDto) {
 
         // 查询条件构造器
         LambdaQueryWrapper<CourseBase> queryWrapper = new LambdaQueryWrapper<>();
@@ -65,6 +65,8 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         // 根据课程发布状态
         queryWrapper.eq(StringUtils.isNotEmpty(queryCourseParamsDto.getPublishStatus()), CourseBase::getStatus, queryCourseParamsDto.getPublishStatus());
 
+        // 根据培训机构
+        queryWrapper.eq(CourseBase::getCompanyId, companyId);
 
         // 分页参数
         Page<CourseBase> page = new Page<>(pageParams.getPageNo(), pageParams.getPageSize());

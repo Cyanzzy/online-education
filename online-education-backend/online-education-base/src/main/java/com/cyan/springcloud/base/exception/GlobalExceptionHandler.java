@@ -38,9 +38,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public RestErrorResponse doException(Exception e) {
+
         // 记录异常
         log.error("捕获异常：{}", e.getMessage());
-        e.printStackTrace();
+
+        if(e.getMessage().equals("不允许访问")){
+            return new RestErrorResponse("没有操作此功能的权限");
+        }
 
         // 解析异常信息
         return new RestErrorResponse(CommonError.UNKOWN_ERROR.getErrMessage());

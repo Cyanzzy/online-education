@@ -2,9 +2,11 @@ package com.cyan.springcloud.ucenter.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.cyan.springcloud.ucenter.mapper.XcMenuMapper;
 import com.cyan.springcloud.ucenter.mapper.XcUserMapper;
 import com.cyan.springcloud.ucenter.model.dto.AuthParamsDto;
 import com.cyan.springcloud.ucenter.model.dto.XcUserExt;
+import com.cyan.springcloud.ucenter.model.po.XcMenu;
 import com.cyan.springcloud.ucenter.model.po.XcUser;
 import com.cyan.springcloud.ucenter.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Cyan Chau
@@ -31,6 +35,9 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Resource
     private ApplicationContext applicationContext;
+
+    @Resource
+    private XcMenuMapper xcMenuMapper;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -62,10 +69,20 @@ public class UserServiceImpl implements UserDetailsService {
      * @return
      */
     public UserDetails getUserPrincipal(XcUserExt user) {
-
         String password = user.getPassword();
         // 权限
         String[] authorities = {"p1"};
+        // 根据用户id查询用户权限
+        List<XcMenu> xcMenus = xcMenuMapper.selectPermissionByUserId(user.getId());
+        if (xcMenus.size() > 0) {
+            List<String> permissions = new ArrayList<>();
+            xcMenus.forEach(xcMenu -> {
+                // 用户拥有权限的标识符
+                permissions.add(xcMenu.getCode());
+            });
+            authorities = permissions.toArray(new String[0]);
+        }
+
         user.setPassword(null);
         String userJson = JSON.toJSONString(user);
         UserDetails userDetails = User.withUsername(userJson).password(password).authorities(authorities).build();

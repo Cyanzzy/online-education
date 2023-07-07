@@ -26,8 +26,9 @@ public class CourseBaseServiceTest {
 
     @Test
     public void testCourseBaseService() {
+        Long companyId = 1232141425L;
         PageParams pageParams = new PageParams();
-        PageResult<CourseBase> result = courseBaseService.queryCourseBaseList(pageParams, new QueryCourseParamsDto());
+        PageResult<CourseBase> result = courseBaseService.queryCourseBaseList(companyId, pageParams, new QueryCourseParamsDto());
         System.out.println(result);
     }
 
