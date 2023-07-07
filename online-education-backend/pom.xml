@@ -17,6 +17,7 @@
         <module>online-education-message-sdk</module>
         <module>online-education-search</module>
         <module>online-education-auth</module>
+        <module>online-education-checkcode</module>
     </modules>
 
     <packaging>pom</packaging>
