@@ -1,7 +1,10 @@
 package com.cyan.springcloud.learning.service;
 
+import com.cyan.springcloud.base.model.PageResult;
+import com.cyan.springcloud.learning.model.dto.MyCourseTableParams;
 import com.cyan.springcloud.learning.model.dto.XcChooseCourseDto;
 import com.cyan.springcloud.learning.model.dto.XcCourseTablesDto;
+import com.cyan.springcloud.learning.model.po.XcCourseTables;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -36,5 +39,12 @@ public interface MyCourseTablesService {
      * @return
      */
     boolean saveChooseCourseStatus(String chooseCourseId);
+
+    /**
+     * 我的课程表
+     *
+     * @param params
+     */
+    PageResult<XcCourseTables> mycourestabls(MyCourseTableParams params);
 
 }

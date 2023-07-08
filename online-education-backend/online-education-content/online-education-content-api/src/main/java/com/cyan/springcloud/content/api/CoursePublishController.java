@@ -1,9 +1,13 @@
 package com.cyan.springcloud.content.api;
 
+import com.alibaba.fastjson.JSON;
 import com.cyan.springcloud.content.service.CoursePublishService;
+import com.cyan.springcloud.model.dto.CourseBaseInfoDto;
 import com.cyan.springcloud.model.dto.CoursePreviewDto;
+import com.cyan.springcloud.model.dto.TeachplanDto;
 import com.cyan.springcloud.model.po.CoursePublish;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 课程预览接口
@@ -60,6 +65,27 @@ public class CoursePublishController {
     @GetMapping("/r/coursepublish/{courseId}")
     public CoursePublish getCoursepublish(@PathVariable("courseId") Long courseId) {
         return coursePublishService.getCoursePublish(courseId);
+    }
+
+    @ApiOperation("获取课程发布信息")
+    @ResponseBody
+    @GetMapping("/course/whole/{courseId}")
+    public CoursePreviewDto getCoursePublish(@PathVariable("courseId") Long courseId) {
+        // 查询课程发布信息
+        CoursePublish coursePublish = coursePublishService.getCoursePublish(courseId);
+        if (coursePublish == null) {
+            return new CoursePreviewDto();
+        }
+
+        // 课程基本信息
+        CourseBaseInfoDto courseBase = new CourseBaseInfoDto();
+        BeanUtils.copyProperties(coursePublish, courseBase);
+        // 课程计划
+        List<TeachplanDto> teachplans = JSON.parseArray(coursePublish.getTeachplan(), TeachplanDto.class);
+        CoursePreviewDto coursePreviewInfo = new CoursePreviewDto();
+        coursePreviewInfo.setCourseBase(courseBase);
+        coursePreviewInfo.setTeachplans(teachplans);
+        return coursePreviewInfo;
     }
 
 
