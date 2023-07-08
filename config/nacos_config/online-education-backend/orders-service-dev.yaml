@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/online_education_orders?serverTimezone=UTC&userUnicode=true&useSSL=false&
+    username: root
+    password: root
+
+pay:
+  qrcodeurl: http://192.168.56.1/api/orders/requestpay?payNo=%s
+  alipay:
+    APP_ID: 2021000122632490
+    APP_PRIVATE_KEY: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCb23aI5+rRIpqyfAjpmcTeVGhmvxhgG1sX3z4bo8GXPIXfiw70rTTrxin/L3DPv4n5NbdeLsMcvl/5UZcm6je7gVsBGI0EjhDMNc50ybueg51jHRbLTMKHG6dIjVTZfwDEwrHzcGt3a0YAbAPtDQjPMS/tthZNA4V1Pq1ZOZA0mwfayPFybv9XBcfrAZSqmm6KYLNsJIQabuX2vU4ae5cFo57lQOU00yckemMltW8FBcgq2V4KzWJ9ChuDB+oVQNk42V+lzehkIY3ENvFZoHTT5XW0+JFZ/qLT9DyWZRlTfkKIL9fnQg4eN9JARfFeeXBudCzylw/+5ygYmB7duy7pAgMBAAECggEBAI/7rwXLOqL51PAOpi0oYTcDw28oGtyuaPkkw7vFDJMq1oItdSOU387wwtt8eDt0N4KCnWPkz1s+hGtPdNP+jH4sgmYAyEXs+JevHYvG0g0eiceGmAg4YX1vjpr39er36T3cn4jF0oIAGCtLnlTgNcMzLZPtI60CE8i8nmhPRWlSXjwXNqV52GE1dcXUy+DEDZrG6baSOcvd8iVnoP0krTHXrg2e/W37s1rVivYkhpvB6khXpFzZ/2smVeA9ZVhz7ocdactaVMVYAWXwqDrrpt2e193qrXn5Goj4k80kah4gOqulz33D/ji8Z1FfvqR5fZlxQVN32IokyCBKxUHNiAECgYEAzTB8XXtr+L/A3RKWh/Yn6knjHnKpmF9B1pM14ZVLTBZ4twDqD5RhrODk42jKLQRPARAUaFPkHnSjCtxsprkewK5Ewo1mJNsCgP4cCPY8xh2NY8IbIIwvkdAa6LOUd1+YnXEmqUpI2SH0qumFozgLhYo7sq3sCqm6mg3SiSeVlK0CgYEAwnOuDgaAmWtfEdVlj/8Rti9a7Knv5Ewfzvf8koVvb+m8FxduD3urP3IXgQqnnkfZZARM46HPcB75dl+f1wWzYrXUADzrr+rk1u42/dpgBYo1vyefsVNUHxQBQbsRWJsXmnxg4ZvPAh+8QLffFmLPMbZJ9Et2VfeNoLFjvBXdTq0CgYAS3EoSLa4XB0krCPJdPPseRfxiaBe+scLTfmSNf7OUItyltafOFs2Dnohrfs5WpPa+GkRF8rAdPItgDDLQgGObQml/mI+zA46PXMwm5rtfWogMi2MC8t/Mf1x510fmURsuHaB4HyPjEYPz0dM+1X/5nmMuYV44/LDySCL6CHFvYQKBgFoYORP8hUcQTZs4sXb3aqBr7ofq8OBpOO+vTNIiixBiTqiwTWlVFnIuDZ/XbPRUO/AwYeOyTCeZ4mGrSqbY2FWrA5AcqeL3RZIkC0yxCn5mnCJ2XHJPtpEztqVa5F2Wdmg4qra9dzt3ssSVrQJ1Q6S33ioXcLvCGFfU+O3jf4d9AoGBAIsGhuvB+MTlJR9DZA15Q07s33cEG3NnP8HeGrSXSek/1IUoOVSEqkwVZbkth85+rtfRoqyFbuaHTFAvpbQ88q7JEhGZZi87T6s+jQ0ayZgvl4NB8J+6ibAFGGATBSzL4ehL6H6MuKNZ4S+v3s1z4uUo2JyBMtzof9KwYD8DMP5B
+    ALIPAY_PUBLIC_KEY: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp0VFlcmsbJVfh8Dwyh9NxjjpCSl2IJ/Nlwq9InQWPrPAWXPcx/6XScpmyWV0X7xyfJfuSF8qrHzFHh1pKn8NzusfZeptEBP3D+Pf54HLy2pEijt3oeef10yZqA/eYVANMSZntm/8YCvS8vREbnsds19WBG7DblL0qb2kMXfWRexKpJMEeJ0bngoN4TuYlPxe72iSH9PAmjS/7CRiuAfiGKzRaNx2EHiaXlzEHsrMi7B491AsQTGd+4uvPYT1enkmclDTISQFKU3bX9lq10QTpQoGbAY3IBusQOkRWBH9Gz3Yp49UTtnmSuyrIloKOLx9qPTvi6XvNzTxa8I1SwNE9wIDAQAB
+
+
+xxl:
+  job:
+    admin: 
+      addresses: http://localhost:8080/xxl-job-admin
+    executor:
+      appname: payresultnotify-job
+      address: 
+      ip: 
+      port: 8989
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 30
+    accessToken: default_token
+
+

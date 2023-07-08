@@ -2,6 +2,7 @@ package com.cyan.springcloud.learning.service;
 
 import com.cyan.springcloud.learning.model.dto.XcChooseCourseDto;
 import com.cyan.springcloud.learning.model.dto.XcCourseTablesDto;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 我的课程表业务逻辑接口
@@ -26,5 +27,14 @@ public interface MyCourseTablesService {
      * @param courseId
      */
     XcCourseTablesDto getLearningStatus(String userId, Long courseId);
+
+
+    /**
+     * 保存选课记录
+     *
+     * @param chooseCourseId
+     * @return
+     */
+    boolean saveChooseCourseStatus(String chooseCourseId);
 
 }

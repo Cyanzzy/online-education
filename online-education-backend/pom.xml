@@ -19,6 +19,7 @@
         <module>online-education-auth</module>
         <module>online-education-checkcode</module>
         <module>online-education-learning</module>
+        <module>online-education-orders</module>
     </modules>
 
     <packaging>pom</packaging>

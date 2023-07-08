@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/static/img/asset-favicon.ico">
-    <title>在线教育-${model.courseBase.name}</title>
+    <title>学成在线-${model.courseBase.name}</title>
 
     <link rel="stylesheet" href="/static/plugins/normalize-css/normalize.css" />
     <link rel="stylesheet" href="/static/plugins/bootstrap/dist/css/bootstrap.css" />
