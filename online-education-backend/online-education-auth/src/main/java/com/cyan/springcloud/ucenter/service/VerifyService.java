@@ -1,6 +1,7 @@
 package com.cyan.springcloud.ucenter.service;
 
 import com.cyan.springcloud.ucenter.model.dto.FindPswDto;
+import com.cyan.springcloud.ucenter.model.dto.RegisterDto;
 
 /**
  * @author Cyan Chau
@@ -14,4 +15,11 @@ public interface VerifyService {
      * @param findPswDto
      */
     void findPassword(FindPswDto findPswDto);
+
+    /***
+     * 注册
+     *
+     * @param registerDto
+     */
+    void register(RegisterDto registerDto);
 }

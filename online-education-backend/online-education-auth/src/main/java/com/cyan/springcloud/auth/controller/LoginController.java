@@ -2,6 +2,7 @@ package com.cyan.springcloud.auth.controller;
 
 import com.cyan.springcloud.ucenter.mapper.XcUserMapper;
 import com.cyan.springcloud.ucenter.model.dto.FindPswDto;
+import com.cyan.springcloud.ucenter.model.dto.RegisterDto;
 import com.cyan.springcloud.ucenter.model.po.XcUser;
 import com.cyan.springcloud.ucenter.service.VerifyService;
 import io.swagger.annotations.ApiOperation;
@@ -50,5 +51,13 @@ public class LoginController {
     @PostMapping("/findpassword")
     public void findPassword(@RequestBody FindPswDto findPswDto) {
         verifyService.findPassword(findPswDto);
+    }
+
+    @ApiOperation(value = "注册", tags = "注册")
+    @PostMapping("/register")
+    public void register(@RequestBody RegisterDto registerDto) {
+
+         // TODO 本项目采用邮箱发送验证和校验验证码，手机发送验证码和校验验证码尚未开发，测试注册功能时手机号栏目请填写邮箱，便于测试
+        verifyService.register(registerDto);
     }
 }
