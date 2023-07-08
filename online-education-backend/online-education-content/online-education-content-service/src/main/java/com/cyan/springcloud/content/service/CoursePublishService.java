@@ -1,6 +1,7 @@
 package com.cyan.springcloud.content.service;
 
 import com.cyan.springcloud.model.dto.CoursePreviewDto;
+import com.cyan.springcloud.model.po.CoursePublish;
 
 import java.io.File;
 
@@ -49,4 +50,11 @@ public interface CoursePublishService {
      */
     void  uploadCourseHtml(Long courseId,File file);
 
+    /**
+     * 根据课程id查询课程发布消息
+     *
+     * @param courseId
+     * @return
+     */
+    CoursePublish getCoursePublish(Long courseId);
 }

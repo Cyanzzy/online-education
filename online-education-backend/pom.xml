@@ -18,6 +18,7 @@
         <module>online-education-search</module>
         <module>online-education-auth</module>
         <module>online-education-checkcode</module>
+        <module>online-education-learning</module>
     </modules>
 
     <packaging>pom</packaging>

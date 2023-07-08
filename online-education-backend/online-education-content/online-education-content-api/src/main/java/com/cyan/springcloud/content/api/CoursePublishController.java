@@ -2,6 +2,7 @@ package com.cyan.springcloud.content.api;
 
 import com.cyan.springcloud.content.service.CoursePublishService;
 import com.cyan.springcloud.model.dto.CoursePreviewDto;
+import com.cyan.springcloud.model.po.CoursePublish;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,5 +54,13 @@ public class CoursePublishController {
         Long companyId = 1232141425L;
         coursePublishService.publish(companyId, courseId);
     }
+
+    @ApiOperation("查询课程发布信息")
+    @ResponseBody
+    @GetMapping("/r/coursepublish/{courseId}")
+    public CoursePublish getCoursepublish(@PathVariable("courseId") Long courseId) {
+        return coursePublishService.getCoursePublish(courseId);
+    }
+
 
 }

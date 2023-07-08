@@ -220,7 +220,10 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         // 修改时间
         courseBase.setChangeDate(LocalDateTime.now());
         // 更新课程基本信息
-        int i = courseBaseMapper.updateById(courseBase);
+        int result = courseBaseMapper.updateById(courseBase);
+        if (result <= 0) {
+            BusinessException.cast("修改课程失败");
+        }
 
         // 封装课程营销信息
         CourseMarket courseMarket = new CourseMarket();

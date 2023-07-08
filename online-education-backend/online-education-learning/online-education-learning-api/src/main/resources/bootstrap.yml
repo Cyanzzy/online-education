@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: learning-api
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: dev
+        group: online-education-backend
+      config:
+        server-addr: localhost:8848
+        namespace: dev
+        group: online-education-backend
+        file-extension: yaml
+        refresh-enabled: true
+        extension-configs:
+          - data-id: learning-service-${spring.profiles.active}.yaml
+            group: online-education-backend
+            refresh: true
+        shared-configs:
+          - data-id: swagger-${spring.profiles.active}.yaml
+            group: online-education-common
+            refresh: true
+          - data-id: logging-${spring.profiles.active}.yaml
+            group: online-education-common
+            refresh: true
+          - data-id: feign-${spring.profiles.active}.yaml
+            group: online-education-common
+            refresh: true
+  profiles:
+    active: dev
+

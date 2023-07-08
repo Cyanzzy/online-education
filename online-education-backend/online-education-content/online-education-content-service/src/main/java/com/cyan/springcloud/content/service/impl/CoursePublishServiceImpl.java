@@ -244,18 +244,23 @@ public class CoursePublishServiceImpl implements CoursePublishService {
 
     @Override
     public void uploadCourseHtml(Long courseId, File file) {
-       try {
-           // file-->MultipartFile
-           MultipartFile multipartFile = MultipartSupportConfig.getMultipartFile(file);
-           // 远程调用媒资服务
-           String upload = mediaServiceClient.upload(multipartFile, "course/" + courseId + ".html");
-           if (upload == null) {
-               log.info("该服务已经降级处理，课程id：{}", courseId);
-               BusinessException.cast("上传静态文件过程中出现异常");
-           }
-       } catch (Exception e) {
-           e.printStackTrace();
-           BusinessException.cast("上传静态文件过程中出现异常");
-       }
+        try {
+            // file-->MultipartFile
+            MultipartFile multipartFile = MultipartSupportConfig.getMultipartFile(file);
+            // 远程调用媒资服务
+            String upload = mediaServiceClient.upload(multipartFile, "course/" + courseId + ".html");
+            if (upload == null) {
+                log.info("该服务已经降级处理，课程id：{}", courseId);
+                BusinessException.cast("上传静态文件过程中出现异常");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            BusinessException.cast("上传静态文件过程中出现异常");
+        }
+    }
+
+    @Override
+    public CoursePublish getCoursePublish(Long courseId) {
+        return coursePublishMapper.selectById(courseId);
     }
 }
