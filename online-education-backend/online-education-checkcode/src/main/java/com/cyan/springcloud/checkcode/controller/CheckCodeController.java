@@ -3,6 +3,8 @@ package com.cyan.springcloud.checkcode.controller;
 import com.cyan.springcloud.checkcode.model.CheckCodeParamsDto;
 import com.cyan.springcloud.checkcode.model.CheckCodeResultDto;
 import com.cyan.springcloud.checkcode.service.CheckCodeService;
+import com.cyan.springcloud.checkcode.service.SendCodeService;
+import com.cyan.springcloud.checkcode.utils.MailUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -23,6 +25,8 @@ public class CheckCodeController {
     @Resource(name = "PicCheckCodeService")
     private CheckCodeService picCheckCodeService;
 
+    @Resource
+    private SendCodeService sendCodeService;
 
     @ApiOperation(value="生成验证信息", notes="生成验证信息")
     @PostMapping(value = "/pic")
@@ -40,5 +44,12 @@ public class CheckCodeController {
     public Boolean verify(String key, String code){
         Boolean isSuccess = picCheckCodeService.verify(key,code);
         return isSuccess;
+    }
+
+    @ApiOperation(value = "发送邮箱验证码", tags = "发送邮箱验证码")
+    @PostMapping("/phone")
+    public void sendEMail(@RequestParam("param1") String email) {
+        String code = MailUtil.achieveCode();
+        sendCodeService.sendEMail(email, code);
     }
 }
