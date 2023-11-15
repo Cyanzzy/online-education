@@ -12,7 +12,7 @@ OL 授课中心
 
 # 项目介绍
 
-OL 授课中心以教育授课为主题（包括用户端、机构端、运营端），基于Spring Cloud 微服务架构进行构建，使用 SpringBoot、Spring Cloud、MyBatis-Plus、MQ、Redis、Elasticsearch 等框架和中间件完成开发，其中项目的功能模块主要有内容管理、媒资管理、课程搜索、选课管理和认证授权。
+OL 授课中心以教育授课为主题（包括用户端、机构端、运营端），基于Spring Cloud 微服务架构进行构建，使用 SpringBoot、Spring Cloud、MyBatis-Plus、RabbitMQ、Redis、Elasticsearch 等框架和中间件完成开发，其中项目的功能模块主要有内容管理、媒资管理、课程搜索、选课管理和认证授权。
 
 为保证项目的稳定性，开发者将项目划分为内容管理服务、媒资管理服务、搜索服务、订单支付服务、学习中心服务、系统管理服务、认证授权服务、网关服务、注册中心服务和配置中心服务。
 
