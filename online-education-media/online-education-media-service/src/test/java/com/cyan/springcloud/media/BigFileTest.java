@@ -19,6 +19,11 @@ import java.util.List;
 @SpringBootTest
 public class BigFileTest {
 
+    /**
+     * 文件分块测试
+     *
+     * @throws Exception
+     */
     @Test
     public void testChunk() throws Exception {
         // 源文件
@@ -49,6 +54,11 @@ public class BigFileTest {
         file_r.close();
     }
 
+    /**
+     * 文件合并测试
+     *
+     * @throws Exception
+     */
     @Test
     public void testMerge() throws Exception{
         // 分块文件目录

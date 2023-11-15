@@ -49,7 +49,7 @@ public class CourseBaseInfoController {
     public PageResult<CourseBase> list(PageParams pageParams, @RequestBody QueryCourseParamsDto queryCourseParamsDto) {
 
         // 获取用户身份
-        SecurityUtil.XcUser user = SecurityUtil.getUser();
+        SecurityUtil.OlUser user = SecurityUtil.getUser();
         // 获取机构id
         Long companyId = null;
         if (StringUtils.isNotEmpty(user.getCompanyId())) {
@@ -76,7 +76,7 @@ public class CourseBaseInfoController {
 //        // 获取当前用户身份
 //        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        System.out.println(">>>>>>>>>>>>>>>>>>>principal=: " + principal);
-        SecurityUtil.XcUser user = SecurityUtil.getUser();
+        SecurityUtil.OlUser user = SecurityUtil.getUser();
         System.out.println(">>>>>>>>>>>>>>>>>> username: " + user.getUsername());
         return courseBaseService.getCourseBaseInfo(courseId);
     }

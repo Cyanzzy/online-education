@@ -1,7 +1,7 @@
 package com.cyan.springcloud.ucenter.service;
 
 import com.cyan.springcloud.ucenter.model.dto.AuthParamsDto;
-import com.cyan.springcloud.ucenter.model.dto.XcUserExt;
+import com.cyan.springcloud.ucenter.model.dto.OlUserExt;
 
 /**
  * 统一认证接口
@@ -16,5 +16,5 @@ public interface AuthService {
      *
      * @param authParamsDto 认证参数
      */
-    XcUserExt execute(AuthParamsDto authParamsDto);
+    OlUserExt execute(AuthParamsDto authParamsDto);
 }

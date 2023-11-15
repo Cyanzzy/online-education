@@ -2,12 +2,12 @@ package com.cyan.springcloud.ucenter.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.cyan.springcloud.ucenter.mapper.XcUserMapper;
-import com.cyan.springcloud.ucenter.mapper.XcUserRoleMapper;
+import com.cyan.springcloud.ucenter.mapper.OlUserMapper;
+import com.cyan.springcloud.ucenter.mapper.OlUserRoleMapper;
 import com.cyan.springcloud.ucenter.model.dto.AuthParamsDto;
-import com.cyan.springcloud.ucenter.model.dto.XcUserExt;
-import com.cyan.springcloud.ucenter.model.po.XcUser;
-import com.cyan.springcloud.ucenter.model.po.XcUserRole;
+import com.cyan.springcloud.ucenter.model.dto.OlUserExt;
+import com.cyan.springcloud.ucenter.model.po.OlUser;
+import com.cyan.springcloud.ucenter.model.po.OlUserRole;
 import com.cyan.springcloud.ucenter.service.AuthService;
 import com.cyan.springcloud.ucenter.service.WechatAuthService;
 import org.springframework.beans.BeanUtils;
@@ -34,10 +34,10 @@ import java.util.UUID;
 public class WechatAuthServiceImpl implements AuthService, WechatAuthService {
 
     @Resource
-    private XcUserMapper xcUserMapper;
+    private OlUserMapper olUserMapper;
 
     @Resource
-    private XcUserRoleMapper xcUserRoleMapper;
+    private OlUserRoleMapper olUserRoleMapper;
 
     @Resource
     private RestTemplate restTemplate;
@@ -52,22 +52,22 @@ public class WechatAuthServiceImpl implements AuthService, WechatAuthService {
     private String secret;
 
     @Override
-    public XcUserExt execute(AuthParamsDto authParamsDto) {
+    public OlUserExt execute(AuthParamsDto authParamsDto) {
         //账号
         String username = authParamsDto.getUsername();
-        XcUser user = xcUserMapper.selectOne(new LambdaQueryWrapper<XcUser>().eq(XcUser::getUsername, username));
+        OlUser user = olUserMapper.selectOne(new LambdaQueryWrapper<OlUser>().eq(OlUser::getUsername, username));
         if (user == null) {
             // 返回空表示用户不存在
             throw new RuntimeException("账号不存在");
         }
-        XcUserExt xcUserExt = new XcUserExt();
+        OlUserExt xcUserExt = new OlUserExt();
         BeanUtils.copyProperties(user, xcUserExt);
 
         return xcUserExt;
     }
 
     @Override
-    public XcUser wechatAuth(String code) {
+    public OlUser wechatAuth(String code) {
 
         // **********申请令牌
         Map<String, String> accessToken = getAccessToken(code);
@@ -82,8 +82,8 @@ public class WechatAuthServiceImpl implements AuthService, WechatAuthService {
 
         // *************保存用户信息到数据库
         // 使用代理对象，防止事务失效
-        XcUser xcUser = cuurentProxy.addWechatUser(userinfo);
-        return xcUser;
+        OlUser olUser = cuurentProxy.addWechatUser(userinfo);
+        return olUser;
     }
 
     /**
@@ -157,38 +157,38 @@ public class WechatAuthServiceImpl implements AuthService, WechatAuthService {
      * @return
      */
     @Transactional
-    public XcUser addWechatUser(Map<String, String> userInfoMap) {
+    public OlUser addWechatUser(Map<String, String> userInfoMap) {
         String unionid = userInfoMap.get("unionid");
         String nickname = userInfoMap.get("nickname");
         // 根据unionid查询用户信息
-        XcUser xcUser = xcUserMapper.selectOne(new LambdaQueryWrapper<XcUser>().eq(XcUser::getWxUnionid, unionid));
-        if (xcUser != null) {
-            return xcUser;
+        OlUser olUser = olUserMapper.selectOne(new LambdaQueryWrapper<OlUser>().eq(OlUser::getWxUnionid, unionid));
+        if (olUser != null) {
+            return olUser;
         }
         // 新增记录
-        xcUser = new XcUser();
+        olUser = new OlUser();
 
         String userId = UUID.randomUUID().toString();
-        xcUser.setId(userId);
-        xcUser.setUsername(unionid);
-        xcUser.setPassword(unionid);
-        xcUser.setWxUnionid(unionid);
-        xcUser.setNickname(nickname);
-        xcUser.setName(nickname);
-        xcUser.setUtype("101001"); // 学生类型
-        xcUser.setStatus("1"); // 用户状态
-        xcUser.setCreateTime(LocalDateTime.now());
-        xcUserMapper.insert(xcUser);
+        olUser.setId(userId);
+        olUser.setUsername(unionid);
+        olUser.setPassword(unionid);
+        olUser.setWxUnionid(unionid);
+        olUser.setNickname(nickname);
+        olUser.setName(nickname);
+        olUser.setUtype("101001"); // 学生类型
+        olUser.setStatus("1"); // 用户状态
+        olUser.setCreateTime(LocalDateTime.now());
+        olUserMapper.insert(olUser);
 
         // 用户角色关系表
-        XcUserRole xcUserRole = new XcUserRole();
+        OlUserRole olUserRole = new OlUserRole();
 
-        xcUserRole.setId(UUID.randomUUID().toString());
-        xcUserRole.setUserId(userId);
-        xcUserRole.setRoleId("17"); // 学生角色
-        xcUserRole.setCreateTime(LocalDateTime.now());
-        xcUserRoleMapper.insert(xcUserRole);
+        olUserRole.setId(UUID.randomUUID().toString());
+        olUserRole.setUserId(userId);
+        olUserRole.setRoleId("17"); // 学生角色
+        olUserRole.setCreateTime(LocalDateTime.now());
+        olUserRoleMapper.insert(olUserRole);
 
-        return xcUser;
+        return olUser;
     }
 }

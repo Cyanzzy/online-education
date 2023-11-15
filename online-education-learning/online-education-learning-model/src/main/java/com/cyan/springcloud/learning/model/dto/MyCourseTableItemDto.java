@@ -1,6 +1,6 @@
 package com.cyan.springcloud.learning.model.dto;
 
-import com.cyan.springcloud.learning.model.po.XcCourseTables;
+import com.cyan.springcloud.learning.model.po.OlCourseTables;
 import lombok.Data;
 import lombok.ToString;
 
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @ToString
-public class MyCourseTableItemDto extends XcCourseTables {
+public class MyCourseTableItemDto extends OlCourseTables {
 
     /**
      * 最近学习时间

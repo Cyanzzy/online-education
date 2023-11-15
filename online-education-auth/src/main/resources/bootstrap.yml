@@ -1,6 +1,10 @@
 spring:
   application:
     name: auth-service
+  security:
+    user:
+      name: admin
+      password: admin
   cloud:
     nacos:
       discovery:
@@ -21,6 +25,9 @@ spring:
             group: online-education-common
             refresh: true
           - data-id: feign-${spring.profiles.active}.yaml
+            group: online-education-common
+            refresh: true
+          - data-id: redis-${spring.profiles.active}.yaml
             group: online-education-common
             refresh: true
   profiles:

@@ -2,10 +2,9 @@ package com.cyan.springcloud.learning.service;
 
 import com.cyan.springcloud.base.model.PageResult;
 import com.cyan.springcloud.learning.model.dto.MyCourseTableParams;
-import com.cyan.springcloud.learning.model.dto.XcChooseCourseDto;
-import com.cyan.springcloud.learning.model.dto.XcCourseTablesDto;
-import com.cyan.springcloud.learning.model.po.XcCourseTables;
-import org.springframework.transaction.annotation.Transactional;
+import com.cyan.springcloud.learning.model.dto.OlChooseCourseDto;
+import com.cyan.springcloud.learning.model.dto.OlCourseTablesDto;
+import com.cyan.springcloud.learning.model.po.OlCourseTables;
 
 /**
  * 我的课程表业务逻辑接口
@@ -21,7 +20,7 @@ public interface MyCourseTablesService {
      * @param userId   用户id
      * @param courseId 课程id
      */
-    XcChooseCourseDto addChooseCourse(String userId, Long courseId);
+    OlChooseCourseDto addChooseCourse(String userId, Long courseId);
 
     /**
      * 判断学习资格
@@ -29,7 +28,7 @@ public interface MyCourseTablesService {
      * @param userId
      * @param courseId
      */
-    XcCourseTablesDto getLearningStatus(String userId, Long courseId);
+    OlCourseTablesDto getLearningStatus(String userId, Long courseId);
 
 
     /**
@@ -45,6 +44,6 @@ public interface MyCourseTablesService {
      *
      * @param params
      */
-    PageResult<XcCourseTables> mycourestabls(MyCourseTableParams params);
+    PageResult<OlCourseTables> mycourestabls(MyCourseTableParams params);
 
 }

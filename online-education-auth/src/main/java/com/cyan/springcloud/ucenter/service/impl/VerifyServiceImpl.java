@@ -1,12 +1,12 @@
 package com.cyan.springcloud.ucenter.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.cyan.springcloud.ucenter.mapper.XcUserMapper;
-import com.cyan.springcloud.ucenter.mapper.XcUserRoleMapper;
+import com.cyan.springcloud.ucenter.mapper.OlUserMapper;
+import com.cyan.springcloud.ucenter.mapper.OlUserRoleMapper;
 import com.cyan.springcloud.ucenter.model.dto.FindPswDto;
 import com.cyan.springcloud.ucenter.model.dto.RegisterDto;
-import com.cyan.springcloud.ucenter.model.po.XcUser;
-import com.cyan.springcloud.ucenter.model.po.XcUserRole;
+import com.cyan.springcloud.ucenter.model.po.OlUser;
+import com.cyan.springcloud.ucenter.model.po.OlUserRole;
 import com.cyan.springcloud.ucenter.service.VerifyService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -30,10 +30,10 @@ public class VerifyServiceImpl implements VerifyService {
     private StringRedisTemplate stringRedisTemplate;
 
     @Resource
-    private XcUserMapper xcUserMapper;
+    private OlUserMapper olUserMapper;
 
     @Resource
-    private XcUserRoleMapper xcUserRoleMapper;
+    private OlUserRoleMapper olUserRoleMapper;
 
     public Boolean verifyCheckCode(String email, String checkcode) {
         // 1. 从redis中获取缓存的验证码
@@ -59,14 +59,14 @@ public class VerifyServiceImpl implements VerifyService {
         if (!password.equals(confirmpwd)) {
             throw new RuntimeException("两次输入的密码不一致");
         }
-        LambdaQueryWrapper<XcUser> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(XcUser::getEmail, findPswDto.getEmail());
-        XcUser user = xcUserMapper.selectOne(lambdaQueryWrapper);
+        LambdaQueryWrapper<OlUser> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(OlUser::getEmail, findPswDto.getEmail());
+        OlUser user = olUserMapper.selectOne(lambdaQueryWrapper);
         if (user == null) {
             throw new RuntimeException("用户不存在");
         }
         user.setPassword(new BCryptPasswordEncoder().encode(password));
-        xcUserMapper.updateById(user);
+        olUserMapper.updateById(user);
     }
 
     @Override
@@ -84,32 +84,32 @@ public class VerifyServiceImpl implements VerifyService {
         if (!password.equals(confirmpwd)) {
             throw new RuntimeException("两次输入密码不一致");
         }
-        LambdaQueryWrapper<XcUser> queryWrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<OlUser> queryWrapper = new LambdaQueryWrapper<>();
 
-        queryWrapper.eq(XcUser::getEmail, registerDto.getEmail());
-        XcUser user = xcUserMapper.selectOne(queryWrapper);
+        queryWrapper.eq(OlUser::getEmail, registerDto.getEmail());
+        OlUser user = olUserMapper.selectOne(queryWrapper);
 
         if (user != null) {
             throw new RuntimeException("用户已经存在，一个邮箱只能注册一个账户");
         }
-        XcUser xcUser = new XcUser();
-        BeanUtils.copyProperties(registerDto, xcUser);
-        xcUser.setPassword(new BCryptPasswordEncoder().encode(password));
-        xcUser.setId(uuid);
-        xcUser.setUtype("101001");  // 学生类型
-        xcUser.setStatus("1");
-        xcUser.setName(registerDto.getNickname());
-        xcUser.setCreateTime(LocalDateTime.now());
-        int xcUserInsert = xcUserMapper.insert(xcUser);
+        OlUser olUser = new OlUser();
+        BeanUtils.copyProperties(registerDto, olUser);
+        olUser.setPassword(new BCryptPasswordEncoder().encode(password));
+        olUser.setId(uuid);
+        olUser.setUtype("101001");  // 学生类型
+        olUser.setStatus("1");
+        olUser.setName(registerDto.getNickname());
+        olUser.setCreateTime(LocalDateTime.now());
+        int xcUserInsert = olUserMapper.insert(olUser);
         if (xcUserInsert <= 0) {
             throw new RuntimeException("新增用户信息失败");
         }
-        XcUserRole xcUserRole = new XcUserRole();
-        xcUserRole.setId(uuid);
-        xcUserRole.setUserId(uuid);
-        xcUserRole.setRoleId("17");
-        xcUserRole.setCreateTime(LocalDateTime.now());
-        int xcUserRoleInsert = xcUserRoleMapper.insert(xcUserRole);
+        OlUserRole olUserRole = new OlUserRole();
+        olUserRole.setId(uuid);
+        olUserRole.setUserId(uuid);
+        olUserRole.setRoleId("17");
+        olUserRole.setCreateTime(LocalDateTime.now());
+        int xcUserRoleInsert = olUserRoleMapper.insert(olUserRole);
         if (xcUserRoleInsert <= 0) {
             throw new RuntimeException("新增用户角色信息失败");
         }

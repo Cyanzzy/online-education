@@ -16,14 +16,14 @@ import com.cyan.springcloud.messagesdk.service.MqMessageService;
 import com.cyan.springcloud.model.dto.AddOrderDto;
 import com.cyan.springcloud.model.dto.PayRecordDto;
 import com.cyan.springcloud.model.dto.PayStatusDto;
-import com.cyan.springcloud.model.po.XcOrders;
-import com.cyan.springcloud.model.po.XcOrdersGoods;
-import com.cyan.springcloud.model.po.XcPayRecord;
+import com.cyan.springcloud.model.po.OlOrders;
+import com.cyan.springcloud.model.po.OlOrdersGoods;
+import com.cyan.springcloud.model.po.OlPayRecord;
 import com.cyan.springcloud.orders.config.AlipayConfig;
 import com.cyan.springcloud.orders.config.PayNotifyConfig;
-import com.cyan.springcloud.orders.mapper.XcOrdersGoodsMapper;
-import com.cyan.springcloud.orders.mapper.XcOrdersMapper;
-import com.cyan.springcloud.orders.mapper.XcPayRecordMapper;
+import com.cyan.springcloud.orders.mapper.OlOrdersGoodsMapper;
+import com.cyan.springcloud.orders.mapper.OlOrdersMapper;
+import com.cyan.springcloud.orders.mapper.OlPayRecordMapper;
 import com.cyan.springcloud.orders.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -52,13 +52,13 @@ import java.util.Map;
 public class OrderServiceImpl implements OrderService {
 
     @Resource
-    private XcOrdersMapper xcOrdersMapper;
+    private OlOrdersMapper olOrdersMapper;
 
     @Resource
-    private XcOrdersGoodsMapper xcOrdersGoodsMapper;
+    private OlOrdersGoodsMapper olOrdersGoodsMapper;
 
     @Resource
-    private XcPayRecordMapper xcPayRecordMapper;
+    private OlPayRecordMapper olPayRecordMapper;
 
     @Resource
     private RabbitTemplate rabbitTemplate;
@@ -83,9 +83,9 @@ public class OrderServiceImpl implements OrderService {
     public PayRecordDto createOrder(String userId, AddOrderDto addOrderDto) {
 
         //添加商品订单
-        XcOrders xcOrders = saveXcOrders(userId, addOrderDto);
+        OlOrders olOrders = saveXcOrders(userId, addOrderDto);
         //添加支付交易记录
-        XcPayRecord payRecord = createPayRecord(xcOrders);
+        OlPayRecord payRecord = createPayRecord(olOrders);
         Long payNo = payRecord.getPayNo();
 
         //生成二维码
@@ -108,10 +108,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public XcPayRecord getPayRecordByPayno(String payNo) {
-        return xcPayRecordMapper.selectOne(
-                new LambdaQueryWrapper<XcPayRecord>()
-                        .eq(XcPayRecord::getPayNo, payNo));
+    public OlPayRecord getPayRecordByPayno(String payNo) {
+        return olPayRecordMapper.selectOne(
+                new LambdaQueryWrapper<OlPayRecord>()
+                        .eq(OlPayRecord::getPayNo, payNo));
     }
 
     @Override
@@ -150,11 +150,11 @@ public class OrderServiceImpl implements OrderService {
         // 1. 获取支付流水号
         String payNo = payStatusDto.getOut_trade_no();
         // 2. 查询数据库订单状态
-        XcPayRecord payRecord = getPayRecordByPayno(payNo);
+        OlPayRecord payRecord = getPayRecordByPayno(payNo);
         if (payRecord == null) {
             BusinessException.cast("未找到支付记录");
         }
-        XcOrders order = xcOrdersMapper.selectById(payRecord.getOrderId());
+        OlOrders order = olOrdersMapper.selectById(payRecord.getOrderId());
         if (order == null) {
             BusinessException.cast("找不到相关联的订单");
         }
@@ -172,13 +172,13 @@ public class OrderServiceImpl implements OrderService {
             payRecord.setOutPayNo(payStatusDto.getTrade_no());
             payRecord.setOutPayChannel("Alipay");
             payRecord.setPaySuccessTime(LocalDateTime.now());
-            int updateRecord = xcPayRecordMapper.updateById(payRecord);
+            int updateRecord = olPayRecordMapper.updateById(payRecord);
             if (updateRecord <= 0) {
                 BusinessException.cast("更新支付交易表失败");
             }
             // 更新订单表
             order.setStatus("600002");
-            int updateOrder = xcOrdersMapper.updateById(order);
+            int updateOrder = olOrdersMapper.updateById(order);
             if (updateOrder <= 0) {
                 log.debug("更新订单表失败");
                 BusinessException.cast("更新订单表失败");
@@ -193,7 +193,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public PayRecordDto queryPayResult(String payNo) {
 
-        XcPayRecord payRecord = getPayRecordByPayno(payNo);
+        OlPayRecord payRecord = getPayRecordByPayno(payNo);
         if (payRecord == null) {
             BusinessException.cast("请重新点击支付获取二维码");
         }
@@ -272,14 +272,14 @@ public class OrderServiceImpl implements OrderService {
      * @return
      */
     @Transactional
-    public XcOrders saveXcOrders(String userId, AddOrderDto addOrderDto) {
+    public OlOrders saveXcOrders(String userId, AddOrderDto addOrderDto) {
 
         // 幂等性处理
-        XcOrders order = getOrderByBusinessId(addOrderDto.getOutBusinessId());
+        OlOrders order = getOrderByBusinessId(addOrderDto.getOutBusinessId());
         if (order != null) {
             return order;
         }
-        order = new XcOrders();
+        order = new OlOrders();
 
         // 生成订单号
         long orderId = IdWorkerUtils.getInstance().nextId();
@@ -294,7 +294,7 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderDescrip(addOrderDto.getOrderDescrip());
         order.setOutBusinessId(addOrderDto.getOutBusinessId()); //选课记录id
 
-        int insert = xcOrdersMapper.insert(order);
+        int insert = olOrdersMapper.insert(order);
         if (insert <= 0) {
             BusinessException.cast("添加订单失败");
         }
@@ -302,13 +302,13 @@ public class OrderServiceImpl implements OrderService {
         // 插入订单明细
         String orderDetailJson = addOrderDto.getOrderDetail();
 
-        List<XcOrdersGoods> xcOrdersGoodsList = JSON.parseArray(orderDetailJson, XcOrdersGoods.class);
-        xcOrdersGoodsList.forEach(goods -> {
+        List<OlOrdersGoods> olOrdersGoodsList = JSON.parseArray(orderDetailJson, OlOrdersGoods.class);
+        olOrdersGoodsList.forEach(goods -> {
             // 遍历插入订单明细表
-            XcOrdersGoods xcOrdersGoods = new XcOrdersGoods();
-            BeanUtils.copyProperties(goods, xcOrdersGoods);
-            xcOrdersGoods.setOrderId(orderId);//订单号
-            xcOrdersGoodsMapper.insert(xcOrdersGoods);
+            OlOrdersGoods olOrdersGoods = new OlOrdersGoods();
+            BeanUtils.copyProperties(goods, olOrdersGoods);
+            olOrdersGoods.setOrderId(orderId);//订单号
+            olOrdersGoodsMapper.insert(olOrdersGoods);
         });
         return order;
     }
@@ -319,8 +319,8 @@ public class OrderServiceImpl implements OrderService {
      * @param businessId
      * @return
      */
-    public XcOrders getOrderByBusinessId(String businessId) {
-        XcOrders orders = xcOrdersMapper.selectOne(new LambdaQueryWrapper<XcOrders>().eq(XcOrders::getOutBusinessId, businessId));
+    public OlOrders getOrderByBusinessId(String businessId) {
+        OlOrders orders = olOrdersMapper.selectOne(new LambdaQueryWrapper<OlOrders>().eq(OlOrders::getOutBusinessId, businessId));
         return orders;
     }
 
@@ -330,25 +330,25 @@ public class OrderServiceImpl implements OrderService {
      * @param orders
      * @return
      */
-    public XcPayRecord createPayRecord(XcOrders orders) {
+    public OlPayRecord createPayRecord(OlOrders orders) {
 
         // 订单id
         Long ordersId = orders.getId();
-        XcOrders xcOrders = xcOrdersMapper.selectById(ordersId);
+        OlOrders olOrders = olOrdersMapper.selectById(ordersId);
 
         // 如果此订单不存在，不能添加支付记录
-        if (xcOrders == null) {
+        if (olOrders == null) {
             BusinessException.cast("订单不存在");
         }
 
         // 订单状态
-        String status = xcOrders.getStatus();
+        String status = olOrders.getStatus();
         // 如果此订单支付成功，不再添加支付记录，避免重复支付
         if ("601002".equals(status)) {
             BusinessException.cast("此订单已支付");
         }
         // 添加支付记录
-        XcPayRecord payRecord = new XcPayRecord();
+        OlPayRecord payRecord = new OlPayRecord();
 
         // 支付记录号，用于传给支付宝
         payRecord.setPayNo(IdWorkerUtils.getInstance().nextId());
@@ -360,7 +360,7 @@ public class OrderServiceImpl implements OrderService {
         payRecord.setStatus("601001"); //未支付
         payRecord.setUserId(orders.getUserId());
 
-        int insert = xcPayRecordMapper.insert(payRecord);
+        int insert = olPayRecordMapper.insert(payRecord);
         if (insert <= 0) {
             BusinessException.cast("插入支付记录失败");
         }

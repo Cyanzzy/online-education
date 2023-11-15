@@ -14,15 +14,15 @@ import java.time.LocalDateTime;
 @Slf4j
 public class SecurityUtil {
 
-    public static XcUser getUser() {
+    public static OlUser getUser() {
         // 拿jwt中的用户身份
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof String) {
             String jsonString = (String) principal;
-            XcUser xcUser = null;
+            OlUser xcUser = null;
             try {
-                xcUser = JSON.parseObject(jsonString, XcUser.class);
+                xcUser = JSON.parseObject(jsonString, OlUser.class);
             } catch (Exception e) {
                 log.debug("解析jwt中的用户身份无法转成XcUser对象:{}", jsonString);
             }
@@ -33,7 +33,7 @@ public class SecurityUtil {
     }
 
     @Data
-    public static class XcUser implements Serializable {
+    public static class OlUser implements Serializable {
 
         private static final long serialVersionUID = 1L;
 

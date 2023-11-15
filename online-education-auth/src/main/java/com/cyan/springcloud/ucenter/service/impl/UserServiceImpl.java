@@ -1,16 +1,13 @@
 package com.cyan.springcloud.ucenter.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.cyan.springcloud.ucenter.mapper.XcMenuMapper;
-import com.cyan.springcloud.ucenter.mapper.XcUserMapper;
+import com.cyan.springcloud.ucenter.mapper.OlMenuMapper;
+import com.cyan.springcloud.ucenter.mapper.OlUserMapper;
 import com.cyan.springcloud.ucenter.model.dto.AuthParamsDto;
-import com.cyan.springcloud.ucenter.model.dto.XcUserExt;
-import com.cyan.springcloud.ucenter.model.po.XcMenu;
-import com.cyan.springcloud.ucenter.model.po.XcUser;
+import com.cyan.springcloud.ucenter.model.dto.OlUserExt;
+import com.cyan.springcloud.ucenter.model.po.OlMenu;
 import com.cyan.springcloud.ucenter.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,13 +28,13 @@ import java.util.List;
 public class UserServiceImpl implements UserDetailsService {
 
     @Resource
-    private XcUserMapper xcUserMapper;
+    private OlUserMapper olUserMapper;
 
     @Resource
     private ApplicationContext applicationContext;
 
     @Resource
-    private XcMenuMapper xcMenuMapper;
+    private OlMenuMapper olMenuMapper;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -57,7 +54,7 @@ public class UserServiceImpl implements UserDetailsService {
         String beanName = authType + "AuthService";
         AuthService authService = applicationContext.getBean(beanName, AuthService.class);
         // 调用统一认证
-        XcUserExt xcUserExt = authService.execute(authParamsDto);
+        OlUserExt xcUserExt = authService.execute(authParamsDto);
 
         return getUserPrincipal(xcUserExt);
     }
@@ -68,17 +65,17 @@ public class UserServiceImpl implements UserDetailsService {
      * @param user 用户主键
      * @return
      */
-    public UserDetails getUserPrincipal(XcUserExt user) {
+    public UserDetails getUserPrincipal(OlUserExt user) {
         String password = user.getPassword();
         // 权限
         String[] authorities = {"p1"};
         // 根据用户id查询用户权限
-        List<XcMenu> xcMenus = xcMenuMapper.selectPermissionByUserId(user.getId());
-        if (xcMenus.size() > 0) {
+        List<OlMenu> olMenus = olMenuMapper.selectPermissionByUserId(user.getId());
+        if (olMenus.size() > 0) {
             List<String> permissions = new ArrayList<>();
-            xcMenus.forEach(xcMenu -> {
+            olMenus.forEach(olMenu -> {
                 // 用户拥有权限的标识符
-                permissions.add(xcMenu.getCode());
+                permissions.add(olMenu.getCode());
             });
             authorities = permissions.toArray(new String[0]);
         }

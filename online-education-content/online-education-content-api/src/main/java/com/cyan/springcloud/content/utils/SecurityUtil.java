@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Slf4j
 public class SecurityUtil {
 
-    public static XcUser getUser() {
+    public static OlUser getUser() {
         try {
             // 获取当前用户身份
             Object principalObj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -25,7 +25,7 @@ public class SecurityUtil {
                 // 取出用户身份信息
                 String principal = principalObj.toString();
                 // 将json转成对象
-                XcUser user = JSON.parseObject(principal, XcUser.class);
+                OlUser user = JSON.parseObject(principal, OlUser.class);
                 return user;
             }
         } catch (Exception e) {
@@ -37,7 +37,7 @@ public class SecurityUtil {
     }
 
     @Data
-    public static class XcUser implements Serializable {
+    public static class OlUser implements Serializable {
 
         private static final long serialVersionUID = 1L;
 

@@ -4,7 +4,7 @@ import com.cyan.springcloud.messagesdk.model.po.MqMessage;
 import com.cyan.springcloud.model.dto.AddOrderDto;
 import com.cyan.springcloud.model.dto.PayRecordDto;
 import com.cyan.springcloud.model.dto.PayStatusDto;
-import com.cyan.springcloud.model.po.XcPayRecord;
+import com.cyan.springcloud.model.po.OlPayRecord;
 
 /**
  * 保存订单信息
@@ -25,7 +25,7 @@ public interface OrderService {
      *
      * @param payNo 交易记录号
      */
-    XcPayRecord getPayRecordByPayno(String payNo);
+    OlPayRecord getPayRecordByPayno(String payNo);
 
 
     /**

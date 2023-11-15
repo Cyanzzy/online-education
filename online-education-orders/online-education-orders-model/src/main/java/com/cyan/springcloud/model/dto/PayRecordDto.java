@@ -1,6 +1,6 @@
 package com.cyan.springcloud.model.dto;
 
-import com.cyan.springcloud.model.po.XcPayRecord;
+import com.cyan.springcloud.model.po.OlPayRecord;
 import lombok.Data;
 import lombok.ToString;
 
@@ -9,7 +9,7 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class PayRecordDto extends XcPayRecord {
+public class PayRecordDto extends OlPayRecord {
 
     // 二维码
     private String qrcode;

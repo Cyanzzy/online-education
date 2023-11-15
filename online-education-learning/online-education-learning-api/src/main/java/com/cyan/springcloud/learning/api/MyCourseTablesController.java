@@ -3,16 +3,15 @@ package com.cyan.springcloud.learning.api;
 import com.cyan.springcloud.base.exception.BusinessException;
 import com.cyan.springcloud.base.model.PageResult;
 import com.cyan.springcloud.learning.model.dto.MyCourseTableParams;
-import com.cyan.springcloud.learning.model.dto.XcChooseCourseDto;
-import com.cyan.springcloud.learning.model.dto.XcCourseTablesDto;
-import com.cyan.springcloud.learning.model.po.XcCourseTables;
+import com.cyan.springcloud.learning.model.dto.OlChooseCourseDto;
+import com.cyan.springcloud.learning.model.dto.OlCourseTablesDto;
+import com.cyan.springcloud.learning.model.po.OlCourseTables;
 
 import com.cyan.springcloud.learning.service.MyCourseTablesService;
 import com.cyan.springcloud.learning.util.SecurityUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,10 +33,10 @@ public class MyCourseTablesController {
 
     @ApiOperation("添加选课")
     @PostMapping("/choosecourse/{courseId}")
-    public XcChooseCourseDto addChooseCourse(@PathVariable("courseId") Long courseId) {
+    public OlChooseCourseDto addChooseCourse(@PathVariable("courseId") Long courseId) {
 
         // 当前登录用户
-        SecurityUtil.XcUser user = SecurityUtil.getUser();
+        SecurityUtil.OlUser user = SecurityUtil.getUser();
         if (user == null) {
             BusinessException.cast("请先登录");
         }
@@ -50,10 +49,10 @@ public class MyCourseTablesController {
 
     @ApiOperation("查询学习资格")
     @PostMapping("/choosecourse/learnstatus/{courseId}")
-    public XcCourseTablesDto getLearnstatus(@PathVariable("courseId") Long courseId) {
+    public OlCourseTablesDto getLearnstatus(@PathVariable("courseId") Long courseId) {
 
         // 当前登录用户
-        SecurityUtil.XcUser user = SecurityUtil.getUser();
+        SecurityUtil.OlUser user = SecurityUtil.getUser();
         if (user == null) {
             BusinessException.cast("请先登录");
         }
@@ -66,9 +65,9 @@ public class MyCourseTablesController {
 
     @ApiOperation("我的课程表")
     @GetMapping("/mycoursetable")
-    public PageResult<XcCourseTables> mycoursetable(MyCourseTableParams params) {
+    public PageResult<OlCourseTables> mycoursetable(MyCourseTableParams params) {
         // 登录用户
-        SecurityUtil.XcUser user = SecurityUtil.getUser();
+        SecurityUtil.OlUser user = SecurityUtil.getUser();
         if(user == null){
             BusinessException.cast("请登录后继续选课");
         }

@@ -9,7 +9,7 @@ import com.cyan.springcloud.base.exception.BusinessException;
 import com.cyan.springcloud.model.dto.AddOrderDto;
 import com.cyan.springcloud.model.dto.PayRecordDto;
 import com.cyan.springcloud.model.dto.PayStatusDto;
-import com.cyan.springcloud.model.po.XcPayRecord;
+import com.cyan.springcloud.model.po.OlPayRecord;
 import com.cyan.springcloud.orders.config.AlipayConfig;
 import com.cyan.springcloud.orders.service.OrderService;
 import com.cyan.springcloud.orders.util.SecurityUtil;
@@ -58,7 +58,7 @@ public class OrderController {
     @ResponseBody
     public PayRecordDto generatePayCode(@RequestBody AddOrderDto addOrderDto) {
         //登录用户
-        SecurityUtil.XcUser user = SecurityUtil.getUser();
+        SecurityUtil.OlUser user = SecurityUtil.getUser();
         if (user == null) {
             BusinessException.cast("请登录后继续选课");
         }
@@ -70,7 +70,7 @@ public class OrderController {
     public void requestpay(String payNo, HttpServletResponse httpResponse) throws IOException {
 
         // 如果payNo不存在则提示重新发起支付
-        XcPayRecord payRecord = orderService.getPayRecordByPayno(payNo);
+        OlPayRecord payRecord = orderService.getPayRecordByPayno(payNo);
         if(payRecord == null){
             BusinessException.cast("请重新点击支付获取二维码");
         }

@@ -1,6 +1,6 @@
 package com.cyan.springcloud.auth.controller;
 
-import com.cyan.springcloud.ucenter.model.po.XcUser;
+import com.cyan.springcloud.ucenter.model.po.OlUser;
 import com.cyan.springcloud.ucenter.service.WechatAuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -25,12 +25,12 @@ public class WeChatLoginController {
     public String wechatLogin(String code, String state) {
         log.debug("微信扫码回调,code:{},state:{}", code, state);
         // 请求微信申请令牌，拿到令牌查询用户信息，将用户信息写入本项目数据库
-        XcUser xcUser = wechatAuthService.wechatAuth(code);
+        OlUser olUser = wechatAuthService.wechatAuth(code);
 
-        if (xcUser == null) {
+        if (olUser == null) {
             return "redirect:http://www.51xuecheng.cn/error.html";
         }
-        String username = xcUser.getUsername();
+        String username = olUser.getUsername();
         return "redirect:http://www.51xuecheng.cn/sign.html?username=" + username + "&authType=wx";
 
     }

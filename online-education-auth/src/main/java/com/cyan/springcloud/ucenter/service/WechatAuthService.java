@@ -1,6 +1,6 @@
 package com.cyan.springcloud.ucenter.service;
 
-import com.cyan.springcloud.ucenter.model.po.XcUser;
+import com.cyan.springcloud.ucenter.model.po.OlUser;
 
 /**
  * 微信认证
@@ -18,5 +18,5 @@ public interface WechatAuthService {
      * @param code
      * @return
      */
-    XcUser wechatAuth(String code);
+    OlUser wechatAuth(String code);
 }

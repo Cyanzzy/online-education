@@ -1,9 +1,6 @@
 package com.cyan.springcloud.learning.service;
 
-import com.cyan.springcloud.base.model.PageResult;
 import com.cyan.springcloud.base.model.RestResponse;
-import com.cyan.springcloud.learning.model.dto.MyCourseTableParams;
-import com.cyan.springcloud.learning.model.po.XcCourseTables;
 
 /**
  * 学习过程管理

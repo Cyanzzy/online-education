@@ -1,13 +1,12 @@
 package com.cyan.springcloud.auth.controller;
 
-import com.cyan.springcloud.ucenter.mapper.XcUserMapper;
+import com.cyan.springcloud.ucenter.mapper.OlUserMapper;
 import com.cyan.springcloud.ucenter.model.dto.FindPswDto;
 import com.cyan.springcloud.ucenter.model.dto.RegisterDto;
-import com.cyan.springcloud.ucenter.model.po.XcUser;
+import com.cyan.springcloud.ucenter.model.po.OlUser;
 import com.cyan.springcloud.ucenter.service.VerifyService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -17,7 +16,7 @@ import javax.annotation.Resource;
 public class LoginController {
 
     @Resource
-    private XcUserMapper userMapper;
+    private OlUserMapper userMapper;
 
     @Resource
     private VerifyService verifyService;
@@ -29,11 +28,10 @@ public class LoginController {
         return "登录成功";
     }
 
-
     @RequestMapping("/user/{id}")
-    public XcUser getuser(@PathVariable("id") String id) {
-        XcUser xcUser = userMapper.selectById(id);
-        return xcUser;
+    public OlUser getUser(@PathVariable("id") String id) {
+        OlUser olUser = userMapper.selectById(id);
+        return olUser;
     }
 
     @RequestMapping("/r/r1")

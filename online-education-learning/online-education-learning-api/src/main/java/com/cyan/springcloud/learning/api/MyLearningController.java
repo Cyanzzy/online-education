@@ -27,7 +27,7 @@ public class MyLearningController {
     @GetMapping("/open/learn/getvideo/{courseId}/{teachplanId}/{mediaId}")
     public RestResponse<String> getvideo(@PathVariable("courseId") Long courseId, @PathVariable("courseId") Long teachplanId, @PathVariable("mediaId") String mediaId) {
         // 登录用户
-        SecurityUtil.XcUser user = SecurityUtil.getUser();
+        SecurityUtil.OlUser user = SecurityUtil.getUser();
         String userId = null;
         if(user != null){
             userId = user.getId();
